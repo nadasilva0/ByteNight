@@ -32,7 +32,8 @@ public class TurretScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(Bullet,transform.position,Quaternion.identity);
+           GameObject bul = Instantiate(Bullet,transform.position,Quaternion.identity);
+           bul.GetComponent<BulletScript>().SpawnBullet(aimDirection, shotSpeed);
         }
     }
 }

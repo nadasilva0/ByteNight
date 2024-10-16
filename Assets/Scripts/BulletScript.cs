@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public GameObject Target;
-    //public TurretScript turretScript;
 
-    public Vector2 direction = Vector2.down;
-    public float shotSpeed = 20.0f;
+    private Vector3 direction = Vector3.down;
+    private float shotSpeed = 20.0f;
+    private Transform target;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,21 @@ public class BulletScript : MonoBehaviour
     void FixedUpdate()
     {
         direction.Normalize();
-        
         rb.velocity = transform.up * shotSpeed;
+    }
+
+    public void SpawnBullet(Vector3 newDir, float newShotSpeed )
+    {
+        Debug.Log(newDir);
+          direction = newDir;
+        Debug.Log(direction);
+        shotSpeed = newShotSpeed;
+          transform.eulerAngles = direction;
+    }
+
+    public void SpawnBullet(Transform target)
+    {
+
     }
 
 }
