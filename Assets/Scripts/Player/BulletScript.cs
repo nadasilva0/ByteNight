@@ -7,38 +7,60 @@ using UnityEngine.UIElements;
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Transform Target;
 
-    private Vector3 direction = Vector3.down;
-    private float shotSpeed = 20.0f;
-    private Transform target;
+    // Bullet's stats
+    private float shotSpeed;
+    private float damage;
+    private float size;
+
+    // Bullet's effects
+    private bool isHoming;
+    private float homingStrength;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //transform.eulerAngles = turretScript.aimDirection;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        direction.Normalize();
+        // Homing bullet turning
+        if (isHoming)
+        {
+            UseHoming();
+        }
+        
+        // Code that actually moves bullet. Place this last in the FixedUpdate order.
         rb.velocity = transform.up * shotSpeed;
     }
 
-    public void SpawnBullet(Vector3 newDir, float newShotSpeed )
+    public void SpawnBullet(Vector3 newDir, float newShotSpeed, int newDamage)
     {
+        // Sets direction
+        transform.eulerAngles = newDir;
         Debug.Log(newDir);
-        direction = newDir;
-        Debug.Log(direction);
+
+        // Sets stats
         shotSpeed = newShotSpeed;
-        transform.eulerAngles = direction;
+        damage = newDamage;
     }
 
     public void SpawnBullet(Transform target)
     {
 
+    }
+
+    private void UseHoming()
+    {
+        // Thanxx Brackeys :)
+        Vector2 direction = (Vector2)Target.position - rb.position;
+        direction.Normalize();
+        float rotateAmount = Vector3.Cross(direction, transform.up).z;
+        rb.angularVelocity = rotateAmount * homingStrength;
     }
 
 }

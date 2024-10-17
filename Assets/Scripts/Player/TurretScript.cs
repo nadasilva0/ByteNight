@@ -8,8 +8,22 @@ public class TurretScript : MonoBehaviour
     private GameObject Target;
     public Vector3 aimDirection;
 
-    //Stats
+    // Stats that only apply to turret
+    public float range = 20.0f;
+    public float fireDelay = 0.1f;
+
+    // Stats that get passed to bullet
     public float shotSpeed = 20.0f;
+    public int damage = 1;
+    public float bulletSize = 1f;
+    public int bulletCount = 1;
+
+    // Special, module-exclusive stats (Still passed to bullet)
+    public bool isExplosive;
+    public bool isHoming;
+    public float homingStrength;
+    public bool givesBurn;
+    public float burnTime = 2.0f;
 
 
     // Start is called before the first frame update
@@ -36,13 +50,7 @@ public class TurretScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
            GameObject bul = Instantiate(Bullet,transform.position,Quaternion.identity);
-           bul.GetComponent<BulletScript>().SpawnBullet(aimDirection, shotSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.X))
-        {
-            GameObject bul = Instantiate(Bullet, transform.position, Quaternion.identity);
-            bul.GetComponent<BulletScript>().SpawnBullet(aimDirection, shotSpeed * 2.5f);
+           bul.GetComponent<BulletScript>().SpawnBullet(aimDirection, shotSpeed, damage);
         }
     }
 }
