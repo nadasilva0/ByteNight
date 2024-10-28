@@ -30,6 +30,7 @@ public class EnemyHealthController : MonoBehaviour
         {
             // Keep in mind to change this "Destroy" to disable gameobject if you decide to use object pooling for enemies
             Destroy(gameObject);
+            Debug.Log("ouch");
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,11 +8,14 @@ public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform Target;
+    private float timeCreated;
 
     // Bullet's stats
     private float shotSpeed;
-    private float damage;
+    private int damage;
     private float size;
+    public int pierce;
+    public float lifetime;
 
     // Bullet's effects
     private bool isHoming;
@@ -23,6 +26,14 @@ public class BulletScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (Time.time - timeCreated >= lifetime)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -38,15 +49,27 @@ public class BulletScript : MonoBehaviour
         rb.velocity = transform.up * shotSpeed;
     }
 
-    public void SpawnBullet(Vector3 newDir, float newShotSpeed, int newDamage)
+    public void SpawnBullet(float newDir, float newShotSpeed, int newDamage, float newLifetime, float newBulletSize, int newBulletPierce)
     {
         // Sets direction
-        transform.eulerAngles = newDir;
-        Debug.Log(newDir);
+        Vector3 aimDirection = new Vector3(0, 0, newDir - 90);
+        transform.eulerAngles = aimDirection;
+        //Debug.Log(newDir);
+
+        // Sets Size
+        this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize) * 0.16f;
 
         // Sets stats
         shotSpeed = newShotSpeed;
         damage = newDamage;
+        lifetime = newLifetime;
+        pierce = newBulletPierce;
+
+        // Sets sprite
+            //TODO
+
+        // Sets other stuff
+        timeCreated = Time.time;
     }
 
     public void SpawnBullet(Transform target)
@@ -56,11 +79,25 @@ public class BulletScript : MonoBehaviour
 
     private void UseHoming()
     {
-        // Thanxx Brackeys :)
+        // Thanks Brackeys :)
         Vector2 direction = (Vector2)Target.position - rb.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         rb.angularVelocity = rotateAmount * homingStrength;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Collider2D>().tag == "Enemy")
+        {
+            Debug.Log("Enemy hit");
+            collision.gameObject.GetComponent<EnemyHealthController>().TakeDamage(damage);
+            pierce--;
+            if (pierce <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
 }
