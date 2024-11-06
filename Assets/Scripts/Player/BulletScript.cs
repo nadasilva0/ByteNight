@@ -13,7 +13,6 @@ public class BulletScript : MonoBehaviour
     // Bullet's stats
     private float shotSpeed;
     private int damage;
-    private float size;
     public int pierce;
     public float lifetime;
 
@@ -49,15 +48,15 @@ public class BulletScript : MonoBehaviour
         rb.velocity = transform.up * shotSpeed;
     }
 
-    public void SpawnBullet(float newDir, float newShotSpeed, int newDamage, float newLifetime, float newBulletSize, int newBulletPierce)
+    public void SpawnBullet(float newDir, float newShotSpeed, int newDamage, float newLifetime, int newBulletPierce)
     {
         // Sets direction
         Vector3 aimDirection = new Vector3(0, 0, newDir - 90);
         transform.eulerAngles = aimDirection;
         //Debug.Log(newDir);
 
-        // Sets Size
-        this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize) * 0.16f;
+        // Sets Size (currently unused
+        //this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize) * 0.16f;
 
         // Sets stats
         shotSpeed = newShotSpeed;

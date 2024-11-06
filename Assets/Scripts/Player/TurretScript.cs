@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class TurretScript : MonoBehaviour
 {
+    public InventoryObject inventory;
     // References to parts of the Turret sprite
     public GameObject TurretBody;
     public GameObject TurretLegs;
@@ -15,12 +16,13 @@ public class TurretScript : MonoBehaviour
     public Sprite[] BodySprites;
     public Sprite[] NozzleSprites;
 
-    // Variables used by turret for calculating
+    // Variables used by turret for calculations and other
     public GameObject Bullet;
     private GameObject Target;
     public Vector3 aimDirection;
     float timeLastFired;
     float angle;
+    private EnemyManager enemyManager;
 
     // Stats that only apply to turret
     public float range = 20.0f;
@@ -31,7 +33,7 @@ public class TurretScript : MonoBehaviour
     // Stats that get passed to bullet
     public float shotSpeed = 20.0f;
     public int damage = 1;
-    public float bulletSize = 1f;
+    //public float bulletSize = 1f;
     public int pierce = 1;
     public float bulletLifetime = 1f;
 
@@ -82,7 +84,7 @@ public class TurretScript : MonoBehaviour
     public void shootBullet()
     {
         GameObject bul = Instantiate(Bullet, transform.position, Quaternion.identity);
-        bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle, spreadAngle * -1), shotSpeed, damage, bulletLifetime, bulletSize, pierce);
+        bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle, spreadAngle * -1), shotSpeed, damage, bulletLifetime, pierce);
     }
 
     public void changeCostume()

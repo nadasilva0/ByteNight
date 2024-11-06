@@ -282,37 +282,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101726884}
   m_CullTransparentMesh: 1
---- !u!1 &375387390
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 375387391}
-  m_Layer: 0
-  m_Name: EnemyHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &375387391
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375387390}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7593.0513, y: 3295.67, z: -137.64307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465893822
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +325,7 @@ GameObject:
   - component: {fileID: 474005786}
   - component: {fileID: 474005787}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: EnemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0064a09c6e56e6e4a81414d82d84e6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesList: []
   CoolBug: {fileID: 5688213551541255089, guid: 474aea8c6179c1d40a5f00271682dcd9, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -607,7 +577,7 @@ MonoBehaviour:
     7/U: Pierce
 
     8/I:
-    Bullet Size'
+    Range'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1409,7 +1379,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1479818017}
   - {fileID: 557756532}
-  - {fileID: 375387391}
   - {fileID: 474005786}
   - {fileID: 837618984}
   - {fileID: 1694739076}

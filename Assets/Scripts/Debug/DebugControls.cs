@@ -49,7 +49,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            script.bulletSize += 0.1f;
+            script.range += 0.5f;
         }
         //Decreases
         if (Input.GetKeyDown(KeyCode.Q))
@@ -84,7 +84,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            script.bulletSize -= 0.1f;
+            script.range -= 0.5f;
         }
     }
 }
