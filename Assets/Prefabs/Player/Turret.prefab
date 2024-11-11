@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd6c0ed360b6524890ae0e8468208dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
   TurretBody: {fileID: 7252954921161237997}
   TurretLegs: {fileID: 5727557528358708455}
   TurretNozzle: {fileID: 8005124111068380715}
@@ -95,13 +96,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 44d3644633564644e8efdbdd00d6b111, type: 3}
   Bullet: {fileID: 4896216852476013290, guid: 6226ccb288b9b2c4da3b3d4a1ee8c7da, type: 3}
   aimDirection: {x: 0, y: 0, z: 0}
-  range: 20
+  range: 5
   fireDelay: 0.1
   bulletCount: 1
-  spreadAngle: 15
+  spreadAngle: 3
   shotSpeed: 20
   damage: 1
-  bulletSize: 1
   pierce: 1
   bulletLifetime: 1
   isExplosive: 0

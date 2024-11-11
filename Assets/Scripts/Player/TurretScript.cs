@@ -24,19 +24,17 @@ public class TurretScript : MonoBehaviour
     float angle;
     private EnemyManager enemyManager;
 
-    // Stats that only apply to turret
-    public float range = 20.0f;
+    [Header("Turret Stats")]
+    public float range = 6.0f;
     public float fireDelay = 0.1f;
     public int bulletCount = 1;
     public float spreadAngle = 15;
 
-    // Stats that get passed to bullet
+    [Header("Bullet Stats")]
     public float shotSpeed = 20.0f;
     public int damage = 1;
-    //public float bulletSize = 1f;
     public int pierce = 1;
     public float bulletLifetime = 1f;
-
     // Special, module-exclusive stats (Still passed to bullet)
     public bool isExplosive;
     public bool isHoming;
@@ -44,18 +42,49 @@ public class TurretScript : MonoBehaviour
     public bool givesBurn;
     public float burnTime = 2.0f;
 
+    // Temporary module equipping system
+    public void OnTriggerEnter(Collider other)
+    {
+        
+        var item = other.GetComponent<Item>();
+        if (item)
+        {
+            inventory.AddItem(item.item);
+            Destroy(other.gameObject);
+        }
+        
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
+    }
+
+    public void Init(EnemyManager _enemyManager)
+    {
+        enemyManager = _enemyManager;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        // temporary
+        enemyManager = FindFirstObjectByType<EnemyManager>();
     }
 
     void Update()
     {
-        //Automatically shoots at target
-        if (GameObject.FindWithTag("Enemy"))
+        //Handles aiming and shooting
+        if (enemyManager.findClosest(transform.position, range))
         {
+            // Aims at target
+            Target = enemyManager.findClosest(transform.position, range);
+            Vector3 direction = (Target.transform.position - transform.position).normalized;
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            aimDirection = new Vector3(0, 0, angle - 90);
+            transform.eulerAngles = aimDirection;
+
+            // Shoots at target
             if (Time.time - timeLastFired >= fireDelay)
             {
                 timeLastFired = Time.time;
@@ -69,16 +98,7 @@ public class TurretScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Aim towards target
-        //Temporary solution to finding target (Search EnemySpawnController's list for gameobjects later)
-        if (GameObject.FindWithTag("Enemy"))
-        {
-            Target = GameObject.FindWithTag("Enemy");
-            Vector3 direction = (Target.transform.position - transform.position).normalized;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            aimDirection = new Vector3(0, 0, angle - 90);
-            transform.eulerAngles = aimDirection;
-        }
+
     }
 
     public void shootBullet()

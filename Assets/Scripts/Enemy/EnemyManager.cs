@@ -45,19 +45,22 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Searches through each enemy in the list to find the one closest to a certain point in the world
+    // Edit this so that it targets the first enemy along the track
     public GameObject findClosest(Vector3 turretPos, float _range)
     {
-        float closestDist = 0;
+        float closestDist = _range;
         GameObject closestEnemy = null;
-        foreach (GameObject enemy in enemiesList)
+        foreach (GameObject newEnemy in enemiesList)
         {
-            float dist = Vector3.Distance(turretPos, enemy.transform.position);
+            float dist = Vector3.Distance(turretPos, newEnemy.transform.position);
             if (dist < closestDist)
             {
                 closestDist = dist;
-                closestEnemy = enemy;
+                closestEnemy = newEnemy;
             }
+            //Debug.Log(dist);
         }
         return closestEnemy;
+        //Debug.Log(closestEnemy);
     }
 }

@@ -8,7 +8,7 @@ public class EnemyHealthController : MonoBehaviour
     //Other
     private EnemyManager enemyManager;
 
-    // Health
+    [Header("Status")]
     public int maxHealth;
     public int health;
 

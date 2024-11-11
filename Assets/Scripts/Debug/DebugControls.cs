@@ -9,8 +9,8 @@ public class DebugControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Turret = GameObject.FindWithTag("Turret");
-        script = Turret.GetComponent<TurretScript>();
+        //Turret = GameObject.FindWithTag("Turret");
+        //script = Turret.GetComponent<TurretScript>();
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            script.range += 0.5f;
+            script.range += 0.1f;
         }
         //Decreases
         if (Input.GetKeyDown(KeyCode.Q))
@@ -84,7 +84,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            script.range -= 0.5f;
+            script.range -= 0.1f;
         }
     }
 }
