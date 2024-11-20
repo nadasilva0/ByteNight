@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform Target;
     private float timeCreated;
+    [SerializeField] private TurretScript turretScript;
 
     // Bullet's stats
     private float shotSpeed;
@@ -16,15 +18,12 @@ public class BulletScript : MonoBehaviour
     public int pierce;
     public float lifetime;
 
-    // Bullet's effects
-    private bool isHoming;
-    private float homingStrength;
-
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        turretScript = GameObject.FindWithTag("Turret").GetComponent<TurretScript>();
     }
 
     void Update()
@@ -38,13 +37,7 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Homing bullet turning
-        if (isHoming)
-        {
-            UseHoming();
-        }
-        
-        // Code that actually moves bullet. Place this last in the FixedUpdate order.
+        rb.angularVelocity = 10;
         rb.velocity = transform.up * shotSpeed;
     }
 
@@ -76,22 +69,16 @@ public class BulletScript : MonoBehaviour
 
     }
 
-    private void UseHoming()
-    {
-        // Thanks Brackeys :)
-        Vector2 direction = (Vector2)Target.position - rb.position;
-        direction.Normalize();
-        float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        rb.angularVelocity = rotateAmount * homingStrength;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (pierce <= 0)
+            return;
         if (collision.GetComponent<Collider2D>().tag == "Enemy")
         {
-            Debug.Log("Enemy hit");
-            collision.gameObject.GetComponent<EnemyHealthController>().TakeDamage(damage);
-            pierce--;
+            //Debug.Log("Enemy hit");
+            EnemyHealthController enemyHealth = collision.gameObject.GetComponent<EnemyHealthController>();
+            enemyHealth.TakeDamage(damage);
+            pierce = pierce - (enemyHealth.pierceResist + 1);
             if (pierce <= 0)
             {
                 Destroy(this.gameObject);

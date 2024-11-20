@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Bullet
   - Turret
+  - Conveyor
   layers:
   - Default
   - TransparentFX

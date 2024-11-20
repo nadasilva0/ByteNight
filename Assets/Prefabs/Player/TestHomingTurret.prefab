@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3945875629475806582}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: TestHomingTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,18 +102,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13bc918a909c83042911bb1cd9aa7378, type: 3}
   - {fileID: 8300000, guid: f85f7343ec812f442a0220161a438ef2, type: 3}
   Bullet: {fileID: 4896216852476013290, guid: 6226ccb288b9b2c4da3b3d4a1ee8c7da, type: 3}
+  Target: {fileID: 0}
   aimDirection: {x: 0, y: 0, z: 0}
-  range: 0
-  fireDelay: 0
-  bulletCount: 0
+  range: 100
+  fireDelay: 0.5
+  bulletCount: 1
   spreadAngle: 0
-  shotSpeed: 0
-  damage: 0
-  pierce: 0
-  bulletLifetime: 0
+  shotSpeed: 6
+  damage: 1
+  pierce: 10
+  bulletLifetime: 100
   isExplosive: 0
-  isHoming: 0
-  homingStrength: 0
+  isHoming: 1
+  homingStrength: 10
   givesBurn: 0
   burnTime: 2
   shootAudioSource: {fileID: 8885851698651031355}
