@@ -9,24 +9,32 @@ using static UnityEngine.GraphicsBuffer;
 // Handles the display of the module card
 public class ModuleCard : MonoBehaviour, IPointerClickHandler
 {
-    //Use an array of TMP_Text later to organize the stat descriptions;
     public TMP_Text upgradeText;
     public Module module;
     private GameObject Turret;
     TurretScript script;
+    GameObject TurInv;
+    TurretInventory TurInvscript;
     public Sprite[] moduleBackground;
     public Image imageComponent;
+    [SerializeField] private bool inTurret = false;
+    GameObject Conveyor;
+    ModuleMaker ConveyorInvScript;
 
     private void Start()
     {
         Turret = GameObject.FindWithTag("Turret");
         script = Turret.GetComponent<TurretScript>();
+        TurInv = GameObject.FindWithTag("TurretInv");
+        TurInvscript = TurInv.GetComponent<TurretInventory>();
+        Conveyor = GameObject.FindWithTag("Conveyor");
+        ConveyorInvScript = Conveyor.GetComponent<ModuleMaker>();
     }
 
-    public void setStatDisplay(Module _module)
+    public void setStatDisplay(Module _module, int moduleBg)
     {
         // Change background depending on module quality
-        imageComponent.sprite = moduleBackground[0];
+        imageComponent.sprite = moduleBackground[moduleBg];
         upgradeText.text = "";
         module = _module;
         // Positive stats
@@ -41,15 +49,26 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         if (module.range > 0)
             upgradeText.text += $"<sprite=4> +{module.range}\n";
         if (module.bulletCount > 0) 
-            upgradeText.text += $"A +{module.bulletCount}\n";
+            upgradeText.text += $"<sprite=5> +{module.bulletCount}\n";
         if (module.spreadAngle > 0) 
-            upgradeText.text += $"B +{module.spreadAngle}\n";
+            upgradeText.text += $"<sprite=6> +{module.spreadAngle}\n";
+        if (module.homingStrength > 0)
+            upgradeText.text += $"<sprite=7> +{module.homingStrength}\n";
 
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        script.AddModule(module);
+        if (module.InTurret == false)
+        {
+            script.AddModule(module);
+            TurInvscript.AddModule(module);
+        }
+        else
+        {
+            script.RemoveModule(module);
+            ConveyorInvScript.CreateModuleCard(module);
+        }
         Destroy(gameObject);
     }
 }

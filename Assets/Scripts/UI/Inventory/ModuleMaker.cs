@@ -25,11 +25,25 @@ public class ModuleMaker : MonoBehaviour
         return newStat;
     }
 
-    public float generateFireRate(int quality, int isDebuff)
+    public float generateFireDelay(int quality, int isDebuff)
     {
+        // THIS IS FOR FLAT FIRE DELAY CHANGES, NOT THE PERCENTAGES
         float newStat = Random.Range(0.05f, 0.10f);
         newStat = Mathf.Round(newStat * 100.0f) * 0.01f;
-        if (isDebuff == 1) //Reverse this bc less fire delay is good
+        if (isDebuff == 1)
+        {
+            newStat = newStat * -1;
+        }
+        Debug.Log(newStat);
+        return newStat;
+    }
+
+    public float generateFireRate(int quality, int isDebuff)
+    {
+        // THIS IS FOR PERCENTAGE CHANGES
+        float newStat = Random.Range(5f, 10f);
+        newStat = Mathf.Round(newStat * 100.0f) * 0.01f;
+        if (isDebuff == 1)
         {
             newStat = newStat * -1;
         }
@@ -53,6 +67,7 @@ public class ModuleMaker : MonoBehaviour
     {
         ModuleCard newCard = Instantiate(cardPrefab, transform);
         Module newModule = new Module();
+        newModule.InTurret = false;
 
         // Calculates number of stats, uses Quality stat to raise the odds of getting two stats on one module
         int numberOfStats = 1;
@@ -73,7 +88,7 @@ public class ModuleMaker : MonoBehaviour
                     break;
                 case 1:
                     //Fire Rate
-                    newModule.fireDelay = generateFireRate(quality, 0);
+                    newModule.fireDelay = generateFireDelay(quality, 0);
                     break;
                 case 2:
                     //Pierce
@@ -97,8 +112,15 @@ public class ModuleMaker : MonoBehaviour
                     break;
             }
         }
-        newCard.setStatDisplay(newModule);
+        newCard.setStatDisplay(newModule, 0);
         audioSource.PlayOneShot(moduleCreateSound);
+    }
+
+    public void CreateModuleCard(Module module)
+    {
+        ModuleCard newCard = Instantiate(cardPrefab, transform);
+        newCard.setStatDisplay(module, 0);
+        module.InTurret = false;
     }
 
 }

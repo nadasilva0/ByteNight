@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Turret
   - Conveyor
+  - TurretInv
   layers:
   - Default
   - TransparentFX

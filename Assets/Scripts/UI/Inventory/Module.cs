@@ -6,9 +6,12 @@ using UnityEngine;
 [System.Serializable]
 public class Module
 {
+    public bool InTurret = false;
+
     [Header("Turret Stats")]
     public float range;
     public float fireDelay;
+    public float fireRateMult;
     public int bulletCount;
     public float spreadAngle;
 

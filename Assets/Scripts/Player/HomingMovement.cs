@@ -10,7 +10,7 @@ public class HomingMovement : MonoBehaviour
     [SerializeField] private TurretScript turretScript;
     public Rigidbody2D rb;
     [SerializeField] private float homingStrength;
-    private Transform Target;
+    [SerializeField] private Transform Target;
     private Transform bulletTransform;
 
     private void Start()
@@ -18,16 +18,17 @@ public class HomingMovement : MonoBehaviour
         Turret = GameObject.FindWithTag("Turret");
         turretScript = Turret.GetComponent<TurretScript>();
         homingStrength = turretScript.homingStrength;
-        bulletTransform = this.transform;
     }
     private void FixedUpdate()
     {
-        Target = turretScript.Target.GetComponent<Transform>();
+        //Debug.Log("Homing script is running");
         // Thanks Brackeys :)
+        Target = turretScript.Target.transform;
         Vector2 direction = (Vector2)Target.position - rb.position;
         direction.Normalize();
-        float rotateAmount = Vector3.Cross(direction, bulletTransform.up).z;
+        Debug.Log(Target);
+        float rotateAmount = Vector3.Cross(direction, -1 * transform.up).z;
+        Debug.Log(rotateAmount);
         rb.angularVelocity = rotateAmount * homingStrength;
-        rb.velocity = transform.up * 10;
     }
 }

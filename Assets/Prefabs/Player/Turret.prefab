@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13bc918a909c83042911bb1cd9aa7378, type: 3}
   - {fileID: 8300000, guid: f85f7343ec812f442a0220161a438ef2, type: 3}
   Bullet: {fileID: 4896216852476013290, guid: 6226ccb288b9b2c4da3b3d4a1ee8c7da, type: 3}
+  Target: {fileID: 0}
   aimDirection: {x: 0, y: 0, z: 0}
   range: 0
   fireDelay: 0
@@ -403,7 +404,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5727557528358708455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

@@ -37,7 +37,6 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.angularVelocity = 10;
         rb.velocity = transform.up * shotSpeed;
     }
 
@@ -62,11 +61,6 @@ public class BulletScript : MonoBehaviour
 
         // Sets other stuff
         timeCreated = Time.time;
-    }
-
-    public void SpawnBullet(Transform target)
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
