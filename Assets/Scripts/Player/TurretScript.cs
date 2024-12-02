@@ -16,6 +16,7 @@ public class TurretScript : MonoBehaviour
     public GameObject TurretNozzle;
     public GameObject TurretExhaust;
     private GameObject turretInv;
+    private GameObject turretStatObject;
     public Sprite[] BodySprites;
     public Sprite[] NozzleSprites;
     public AudioClip[] ShootSounds;
@@ -23,7 +24,8 @@ public class TurretScript : MonoBehaviour
     SpriteRenderer nozzleSprite;
     SpriteRenderer legsSprite;
 
-    TurretInventory turretInventoryScript;
+    ModuleHolder turretInventoryScript;
+    TurretStatContoller turretStatScript;
 
     // Variables used by turret for calculations and other
     public GameObject Bullet;
@@ -82,21 +84,16 @@ public class TurretScript : MonoBehaviour
         legsSprite = TurretLegs.GetComponent<SpriteRenderer>();
 
         turretInv = GameObject.FindWithTag("TurretInv");
-        turretInventoryScript = turretInv.GetComponent<TurretInventory>();
+        turretStatObject = GameObject.FindWithTag("TurretStatDisplay");
+        turretInventoryScript = turretInv.GetComponent<ModuleHolder>();
+        turretStatScript = turretStatObject.GetComponent<TurretStatContoller>();
 
         shootAudioSource = GetComponent<AudioSource>();
         // temporary
         enemyManager = FindFirstObjectByType<EnemyManager>();
 
         // Set stats
-        damage = baseDamage;
-        range = baseRange;
-        fireDelay = BaseFireDelay;
-        bulletCount = baseBulletCount;
-        spreadAngle = baseSpreadAngle;
-        shotSpeed = baseShotSpeed;
-        pierce = basePierce;
-        bulletLifetime = baseRange;
+        UpdateModules();
     }
 
     void Update()
@@ -177,9 +174,6 @@ public class TurretScript : MonoBehaviour
                 nozzleSprite.sprite = NozzleSprites[2];
                 break;
         }
-
-        //Play upgrade sound
-        upgradeAudioSource.Play();
     }
 
     private void UpdateModules()
@@ -221,6 +215,7 @@ public class TurretScript : MonoBehaviour
         }
         bulletLifetime = range * 1.5f;
         changeCostume();
+        turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, range, bulletCount, spreadAngle);
     }
 
     public void AddModule(Module newModule)

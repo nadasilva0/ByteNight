@@ -113,7 +113,7 @@ public class ModuleMaker : MonoBehaviour
             }
         }
         newCard.setStatDisplay(newModule, 0);
-        audioSource.PlayOneShot(moduleCreateSound);
+        //audioSource.PlayOneShot(moduleCreateSound);
     }
 
     public void CreateModuleCard(Module module)

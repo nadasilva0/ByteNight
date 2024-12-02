@@ -14,21 +14,28 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
     private GameObject Turret;
     TurretScript script;
     GameObject TurInv;
-    TurretInventory TurInvscript;
+    ModuleHolder TurInvscript;
     public Sprite[] moduleBackground;
     public Image imageComponent;
     [SerializeField] private bool inTurret = false;
     GameObject Conveyor;
     ModuleMaker ConveyorInvScript;
 
+    // Annoying naming conventions because I renamed the original TurInv to ModuleHolder and don't have the time to rename every instance of it in every script
+    TurretInventory trueTurInventoryScript;
+
+    public AudioClip equipSound;
+    public AudioClip unequipSound;
+
     private void Start()
     {
         Turret = GameObject.FindWithTag("Turret");
         script = Turret.GetComponent<TurretScript>();
         TurInv = GameObject.FindWithTag("TurretInv");
-        TurInvscript = TurInv.GetComponent<TurretInventory>();
+        TurInvscript = TurInv.GetComponent<ModuleHolder>();
         Conveyor = GameObject.FindWithTag("Conveyor");
         ConveyorInvScript = Conveyor.GetComponent<ModuleMaker>();
+        trueTurInventoryScript = FindObjectOfType<TurretInventory>();
     }
 
     public void setStatDisplay(Module _module, int moduleBg)
@@ -56,19 +63,41 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
             upgradeText.text += $"<sprite=7> +{module.homingStrength}\n";
 
     }
+    
+    public void CantEquipModule()
+    {
+        Debug.Log("Inventory full!");
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (module.InTurret == false)
+        if (trueTurInventoryScript.menuOn)
         {
-            script.AddModule(module);
-            TurInvscript.AddModule(module);
+            if (module.InTurret == false)
+            {
+                if (script.modules.Count <= 6)
+                {
+                    script.AddModule(module);
+                    TurInvscript.AddModule(module);
+                    trueTurInventoryScript.PlaySound(equipSound);
+                }
+                else
+                {
+                    CantEquipModule();
+                }
+            }
+            else
+            {
+                script.RemoveModule(module);
+                ConveyorInvScript.CreateModuleCard(module);
+                trueTurInventoryScript.PlaySound(unequipSound);
+            }
+            Destroy(gameObject);
         }
         else
         {
-            script.RemoveModule(module);
-            ConveyorInvScript.CreateModuleCard(module);
+            CantEquipModule();
         }
-        Destroy(gameObject);
+        
     }
 }
