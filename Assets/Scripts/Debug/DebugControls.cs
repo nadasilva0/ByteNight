@@ -6,11 +6,15 @@ public class DebugControls : MonoBehaviour
 {
     GameObject Turret;
     TurretScript script;
+    GameObject Conveyor;
+    ModuleMaker inventoryScript;
     // Start is called before the first frame update
     void Start()
     {
         Turret = GameObject.FindWithTag("Turret");
         script = Turret.GetComponent<TurretScript>();
+        Conveyor = GameObject.FindWithTag("Conveyor");
+        inventoryScript = Conveyor.GetComponent<ModuleMaker>();
     }
 
     // Update is called once per frame
@@ -49,7 +53,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            script.bulletSize += 0.1f;
+            script.range += 0.1f;
         }
         //Decreases
         if (Input.GetKeyDown(KeyCode.Q))
@@ -84,7 +88,22 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            script.bulletSize -= 0.1f;
+            script.range -= 0.1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            inventoryScript.CreateStatModule(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            inventoryScript.CreateStatModule(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Comma))
+        {
+            inventoryScript.CreateStatModule(10);
         }
     }
 }
