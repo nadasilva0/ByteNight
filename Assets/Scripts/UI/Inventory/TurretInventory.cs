@@ -26,26 +26,17 @@ public class TurretInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            TurretInv.SetActive(!TurretInv.activeSelf);
             menuOn = !menuOn;
-            if (TurretInv.activeSelf)
+            if (menuOn)
             {
                 invOpenSource.Play();
+                TurretInv.transform.localScale = Vector3.one;
             }
             else
             {
                 invCloseSource.Play();
+                TurretInv.transform.localScale = Vector3.zero;
             }
-        }
-    }
-
-    private void LateUpdate()
-    {
-        //Dumb way of having inventory start closed while still giving everything a reference to it
-        if (gameStarted == false)
-        {
-            gameStarted = true;
-            TurretInv.SetActive(false);
         }
     }
 

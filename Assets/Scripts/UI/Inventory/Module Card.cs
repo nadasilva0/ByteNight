@@ -75,11 +75,12 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         {
             if (module.InTurret == false)
             {
-                if (script.modules.Count <= 6)
+                if (script.modules.Count <= 5)
                 {
                     script.AddModule(module);
                     TurInvscript.AddModule(module);
                     trueTurInventoryScript.PlaySound(equipSound);
+                    Destroy(gameObject);
                 }
                 else
                 {
@@ -91,8 +92,9 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
                 script.RemoveModule(module);
                 ConveyorInvScript.CreateModuleCard(module);
                 trueTurInventoryScript.PlaySound(unequipSound);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
         }
         else
         {
