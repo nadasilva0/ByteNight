@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretInventory : MonoBehaviour
+public class ScrapInventory : MonoBehaviour
 {
-    public GameObject TurretInv;
+    public GameObject ScrapInv;
     public AudioSource invOpenSource;
     public AudioSource invCloseSource;
 
-    GameObject ScrapInv;
-    ScrapHolder ScrapInvHolder;
-    ScrapInventory ScrapInvMenu;
+    GameObject TurInv;
+    ModuleHolder TurInvscript;
+    // Annoying naming conventions because I renamed the original TurInv to ModuleHolder and don't have the time to rename every instance of it in every script
+    TurretInventory trueTurInventoryScript;
+
 
     public bool menuOn = false;
 
@@ -22,26 +24,26 @@ public class TurretInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScrapInv = GameObject.FindWithTag("ScrapInv");
-        ScrapInvHolder = FindObjectOfType<ScrapHolder>();
-        ScrapInvMenu = FindObjectOfType<ScrapInventory>();
+        TurInv = GameObject.FindWithTag("TurretInv");
+        TurInvscript = TurInv.GetComponent<ModuleHolder>();
+        trueTurInventoryScript = FindObjectOfType<TurretInventory>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !ScrapInvMenu.menuOn)
+        if (Input.GetKeyDown(KeyCode.S) && !trueTurInventoryScript.menuOn)
         {
             menuOn = !menuOn;
             if (menuOn)
             {
                 invOpenSource.Play();
-                TurretInv.transform.localScale = Vector3.one;
+                ScrapInv.transform.localScale = Vector3.one;
             }
             else
             {
                 invCloseSource.Play();
-                TurretInv.transform.localScale = Vector3.zero;
+                ScrapInv.transform.localScale = Vector3.zero;
             }
         }
     }

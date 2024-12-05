@@ -265,8 +265,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cdb24c81e2456b548b079bd58ac7f631, type: 3}
   imageComponent: {fileID: 4475473144342169064}
   inTurret: 0
-  equipSound: {fileID: 8300000, guid: ba1a78f4238d6404e8e650b7e6edc0b8, type: 3}
-  unequipSound: {fileID: 8300000, guid: ba1a78f4238d6404e8e650b7e6edc0b8, type: 3}
+  equipSound: {fileID: 8300000, guid: c73653708de3835498a70dfd2db6dee8, type: 3}
+  unequipSound: {fileID: 8300000, guid: 7e88a44921dcf3b41ab2f0ec63475894, type: 3}
 --- !u!1 &7324476577894569757
 GameObject:
   m_ObjectHideFlags: 0

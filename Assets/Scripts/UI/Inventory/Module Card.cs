@@ -13,13 +13,19 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
     public Module module;
     private GameObject Turret;
     TurretScript script;
+
     GameObject TurInv;
     ModuleHolder TurInvscript;
+
     public Sprite[] moduleBackground;
     public Image imageComponent;
     [SerializeField] private bool inTurret = false;
     GameObject Conveyor;
     ModuleMaker ConveyorInvScript;
+
+    GameObject ScrapInv;
+    ScrapHolder ScrapInvHolder;
+    ScrapInventory ScrapInvMenu;
 
     // Annoying naming conventions because I renamed the original TurInv to ModuleHolder and don't have the time to rename every instance of it in every script
     TurretInventory trueTurInventoryScript;
@@ -31,11 +37,21 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
     {
         Turret = GameObject.FindWithTag("Turret");
         script = Turret.GetComponent<TurretScript>();
+
         TurInv = GameObject.FindWithTag("TurretInv");
         TurInvscript = TurInv.GetComponent<ModuleHolder>();
+
         Conveyor = GameObject.FindWithTag("Conveyor");
         ConveyorInvScript = Conveyor.GetComponent<ModuleMaker>();
+
         trueTurInventoryScript = FindObjectOfType<TurretInventory>();
+
+        ScrapInv = GameObject.FindWithTag("ScrapInv");
+        ScrapInvHolder = FindObjectOfType<ScrapHolder>();
+        ScrapInvMenu = FindObjectOfType<ScrapInventory>();
+
+        Debug.Log(TurInv);
+        Debug.Log(TurInvscript);
     }
 
     public void setStatDisplay(Module _module, int moduleBg)
@@ -64,13 +80,14 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
 
     }
     
-    public void CantEquipModule()
+    public void CantEquipModule(string reason)
     {
-        Debug.Log("Inventory full!");
+        Debug.Log(reason);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // Yanderedev ass code
         if (trueTurInventoryScript.menuOn)
         {
             if (module.InTurret == false)
@@ -84,7 +101,7 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
                 }
                 else
                 {
-                    CantEquipModule();
+                    CantEquipModule("Inventory Full!");
                 }
             }
             else
@@ -96,9 +113,32 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
             }
             
         }
+        else if (ScrapInvMenu.menuOn)
+        {
+            if (module.InTurret == false)
+            {
+                if (ScrapInvHolder.modules.Count <= 1)
+                {
+                    ScrapInvHolder.AddModule(module);
+                    trueTurInventoryScript.PlaySound(equipSound);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    CantEquipModule("Scrap Slots Full!");
+                }
+            }
+            else
+            {
+                ScrapInvHolder.RemoveModule(module);
+                ConveyorInvScript.CreateModuleCard(module); // In the future probably have this done on the Scrap Inventory script
+                trueTurInventoryScript.PlaySound(unequipSound);
+                Destroy(gameObject);
+            }
+        }
         else
         {
-            CantEquipModule();
+            CantEquipModule("Menu not open!");
         }
         
     }
