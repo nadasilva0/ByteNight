@@ -21,6 +21,7 @@ public class DebugControls : MonoBehaviour
     void Update()
     {
         //Increases
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1) && script.fireDelay >= 0)
         {
             script.fireDelay -= 0.05f;
@@ -95,6 +96,7 @@ public class DebugControls : MonoBehaviour
         {
             inventoryScript.CreateStatModule(0);
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -105,5 +107,6 @@ public class DebugControls : MonoBehaviour
         {
             inventoryScript.CreateStatModule(10);
         }
+        
     }
 }

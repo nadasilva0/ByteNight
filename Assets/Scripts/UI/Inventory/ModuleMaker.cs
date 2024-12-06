@@ -34,20 +34,7 @@ public class ModuleMaker : MonoBehaviour
         {
             newStat = newStat * -1;
         }
-        Debug.Log(newStat);
-        return newStat;
-    }
-
-    public float generateFireRate(int quality, int isDebuff)
-    {
-        // THIS IS FOR PERCENTAGE CHANGES
-        float newStat = Random.Range(5f, 10f);
-        newStat = Mathf.Round(newStat * 100.0f) * 0.01f;
-        if (isDebuff == 1)
-        {
-            newStat = newStat * -1;
-        }
-        Debug.Log(newStat);
+        //Debug.Log(newStat);
         return newStat;
     }
 

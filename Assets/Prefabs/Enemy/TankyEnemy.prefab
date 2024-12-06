@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 800409258084446995}
   - component: {fileID: 6566269111561981888}
   - component: {fileID: 4247870697143865290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankyEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  distanceTraveled: 0
 --- !u!114 &6566269111561981888
 MonoBehaviour:
   m_ObjectHideFlags: 0

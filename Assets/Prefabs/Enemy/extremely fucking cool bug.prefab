@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1032651510448164503}
   - component: {fileID: 6566269111561981888}
   - component: {fileID: 4247870697143865290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: extremely fucking cool bug
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -113,8 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 99
   health: 0
+  damageResist: 0
+  pierceResist: 0
   isBurning: 0
-  isWeakened: 0
+  weaknessAmount: 0
 --- !u!61 &4247870697143865290
 BoxCollider2D:
   m_ObjectHideFlags: 0

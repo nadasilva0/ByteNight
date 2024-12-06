@@ -8,6 +8,8 @@ public class Module
 {
     public bool InTurret = false;
 
+    public int quality;
+
     [Header("Turret Stats")]
     public float range;
     public float fireDelay;

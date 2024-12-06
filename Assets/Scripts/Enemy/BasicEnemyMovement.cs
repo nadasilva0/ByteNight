@@ -22,7 +22,7 @@ public class BasicEnemyMovement : MonoBehaviour
     {
         distanceTraveled += speed * Time.deltaTime;
         transform.position = pathCreator.path.GetPointAtDistance(distanceTraveled);
-        if (distanceTraveled > 37)
+        if (distanceTraveled > 38)
         {
             livesController.health -= 1;
             Destroy(gameObject);
