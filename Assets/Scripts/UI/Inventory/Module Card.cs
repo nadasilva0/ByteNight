@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
+using System.Reflection;
 
 // Handles the display of the module card
 public class ModuleCard : MonoBehaviour, IPointerClickHandler
@@ -49,18 +50,31 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         ScrapInv = GameObject.FindWithTag("ScrapInv");
         ScrapInvHolder = FindObjectOfType<ScrapHolder>();
         ScrapInvMenu = FindObjectOfType<ScrapInventory>();
-
-        Debug.Log(TurInv);
-        Debug.Log(TurInvscript);
     }
 
-    public void setStatDisplay(Module _module, int moduleBg)
+    public void setStatDisplay(Module _module)
     {
-        // Change background depending on module quality
-        imageComponent.sprite = moduleBackground[moduleBg];
         upgradeText.text = "";
         module = _module;
+        int moduleBg = 0;
+        // Change background depending on module quality/specialness
+        if (module.homingStrength > 0)
+        {
+            moduleBg = 2;
+        }
+        else
+        {
+            if(module.quality > 2)
+            {
+                moduleBg = 1;
+            }
+        }
+        imageComponent.sprite = moduleBackground[moduleBg];
+
         // Positive stats
+
+        if (module.homingStrength > 0)
+            upgradeText.text += $"<sprite=7> +{module.homingStrength}\n";
         if (module.damage > 0) 
             upgradeText.text += $"<sprite=0> +{module.damage}\n";
         if (module.fireDelay > 0)
@@ -74,10 +88,24 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         if (module.bulletCount > 0) 
             upgradeText.text += $"<sprite=5> +{module.bulletCount}\n";
         if (module.spreadAngle > 0) 
-            upgradeText.text += $"<sprite=6> +{module.spreadAngle}\n";
-        if (module.homingStrength > 0)
-            upgradeText.text += $"<sprite=7> +{module.homingStrength}\n";
-
+            upgradeText.text += $"<sprite=6> -{module.spreadAngle}°\n";
+        // Negative stats
+        if (module.homingStrength < 0)
+            upgradeText.text += $"<sprite=7> <color=\"red\">{module.homingStrength}</color>\n";
+        if (module.damage < 0)
+            upgradeText.text += $"<sprite=0> <color=\"red\">{module.damage}</color>\n";
+        if (module.fireDelay < 0)
+            upgradeText.text += $"<sprite=1> <color=\"red\">+{Mathf.Abs(module.fireDelay)}</color>\n";
+        if (module.pierce < 0)
+            upgradeText.text += $"<sprite=2> <color=\"red\">{module.pierce}</color>\n";
+        if (module.shotSpeed < 0)
+            upgradeText.text += $"<sprite=3> <color=\"red\">{module.shotSpeed}</color>\n";
+        if (module.range < 0)
+            upgradeText.text += $"<sprite=4> <color=\"red\">{module.range}</color>\n";
+        if (module.bulletCount < 0)
+            upgradeText.text += $"<sprite=5> <color=\"red\">{module.bulletCount}</color>\n";
+        if (module.spreadAngle < 0)
+            upgradeText.text += $"<sprite=6> <color=\"red\">+{Mathf.Abs(module.spreadAngle)}°</color>\n";
     }
     
     public void CantEquipModule(string reason)
@@ -140,6 +168,6 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         {
             CantEquipModule("Menu not open!");
         }
-        
+        Destroy(gameObject); // for testing purposes
     }
 }

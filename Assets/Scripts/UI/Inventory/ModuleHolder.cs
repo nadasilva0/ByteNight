@@ -32,7 +32,7 @@ public class ModuleHolder : MonoBehaviour
     public void AddModule(Module module)
     {
         ModuleCard newCard = Instantiate(cardPrefab, transform);
-        newCard.setStatDisplay(module, 0);
+        newCard.setStatDisplay(module);
         module.InTurret = true;
     }
 

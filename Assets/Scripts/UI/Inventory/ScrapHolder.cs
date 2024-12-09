@@ -30,7 +30,7 @@ public class ScrapHolder : MonoBehaviour
     {
         modules.Add(module);
         ModuleCard newCard = Instantiate(cardPrefab, transform);
-        newCard.setStatDisplay(module, 0);
+        newCard.setStatDisplay(module);
         module.InTurret = true;
     }
 

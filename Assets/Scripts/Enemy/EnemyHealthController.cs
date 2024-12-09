@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,8 @@ public class EnemyHealthController : MonoBehaviour
 {
     //Other
     private EnemyManager enemyManager;
+
+    [SerializeField] private SimpleFlash flashEffect;
 
     [Header("Health Stats")]
     public int maxHealth;
@@ -46,6 +49,8 @@ public class EnemyHealthController : MonoBehaviour
         totalDamage = (damage + weaknessAmount) - damageResist;
         if (totalDamage < 0)
             totalDamage = 0;
+
+        flashEffect.Flash();
         
         health -= totalDamage;
         if (health <= 0)

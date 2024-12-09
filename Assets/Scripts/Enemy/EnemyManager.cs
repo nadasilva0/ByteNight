@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private int baseEnemies = 1;
     [SerializeField] private float enemiesPerSecond = 0.5f;
-    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] private float timeBetweenWaves = 0f;
     [SerializeField] private float difficultyScalingFactor = 0.75f;
 
     private int currentWave = 1;
@@ -34,9 +34,7 @@ public class EnemyManager : MonoBehaviour
     {
         coolFuckingText = GameObject.Find("extremely fucking cool bug text");
         enemiesLeftToSpawn = baseEnemies;
-        Conveyor = GameObject.FindWithTag("Conveyor");
-        inventoryScript = Conveyor.GetComponent<ModuleMaker>();
-        inventoryScript.CreateStatModule(0);
+        inventoryScript = FindObjectOfType<ModuleMaker>();
     }
 
     private void StartWave()
@@ -50,7 +48,7 @@ public class EnemyManager : MonoBehaviour
     {
         currentWave++;
         isSpawning = false;
-        inventoryScript.CreateStatModule(0);
+        inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5 });
     }
 
     private int EnemiesPerWave()
@@ -65,9 +63,8 @@ public class EnemyManager : MonoBehaviour
         {
             StartWave();
         }
-
-
         if (!isSpawning) return;
+
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0)
         {
@@ -77,7 +74,7 @@ public class EnemyManager : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
-        if (enemiesLeftToSpawn == 0 && enemiesList.Count == 0)
+        if (enemiesLeftToSpawn == 0 && enemiesList.Count <= 0)
         {
             EndWave();
         }
@@ -103,6 +100,10 @@ public class EnemyManager : MonoBehaviour
         {
             SpawnEnemy(EnemyPrefabs[4]);
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SpawnEnemy(EnemyPrefabs[5]);
+        }
     }
 
     public void SpawnEnemy(GameObject enemy)
@@ -121,17 +122,35 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Searches through each enemy in the list to find the one closest to a certain point in the world
-    // Edit this so that it targets the first enemy along the track
-    public GameObject findClosest(Vector3 turretPos, float _range)
+    public GameObject findClosest(Vector3 pos, float _range)
     {
         float closestDist = _range;
         GameObject closestEnemy = null;
         foreach (GameObject newEnemy in enemiesList)
         {
-            float dist = Vector3.Distance(turretPos, newEnemy.transform.position);
+            float dist = Vector3.Distance(pos, newEnemy.transform.position);
             if (dist < closestDist)
             {
                 closestDist = dist;
+                closestEnemy = newEnemy;
+            }
+            //Debug.Log(dist);
+        }
+        return closestEnemy;
+        //Debug.Log(closestEnemy);
+    }
+
+    // Searches through each enemy in the list to find the one furthest along the track
+    public GameObject findFurthest()
+    {
+        float furthestDist = 0;
+        GameObject closestEnemy = null;
+        foreach (GameObject newEnemy in enemiesList)
+        {
+            float dist = newEnemy.GetComponent<BasicEnemyMovement>().distanceTraveled;
+            if (dist > furthestDist)
+            {
+                furthestDist = dist;
                 closestEnemy = newEnemy;
             }
             //Debug.Log(dist);

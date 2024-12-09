@@ -24,6 +24,14 @@ public class TurretScript : MonoBehaviour
     SpriteRenderer nozzleSprite;
     SpriteRenderer legsSprite;
 
+    public ParticleSystem smokeParticle;
+
+    public ParticleSystem upgradeSparks;
+    public ParticleSystem upgradeSpraypaint;
+    public ParticleSystem upgradeDrillSparks;
+
+    public GameObject shootPoint;
+
     ModuleHolder turretInventoryScript;
     TurretStatContoller turretStatScript;
 
@@ -59,11 +67,11 @@ public class TurretScript : MonoBehaviour
     private float baseRange = 6.0f;
     private float BaseFireDelay = 1f;
     private int baseBulletCount = 1;
-    private float baseSpreadAngle = 3;
-    private float baseShotSpeed = 20.0f;
+    private float baseSpreadAngle = 5;
+    private float baseShotSpeed = 15.0f;
     private int basePierce = 1;
-    private float baseBulletLifetime = 1f;
-    private float baseHomingStrength = 1f;
+    private float baseBulletLifetime = 0.4f;
+    private float baseHomingStrength = 0f;
     private float baseBurnTime = 2.0f;
 
     // Handles Audio
@@ -99,10 +107,11 @@ public class TurretScript : MonoBehaviour
     void Update()
     {
         //Handles aiming and shooting
-        if (enemyManager.findClosest(transform.position, range))
+        // Too lazy to program findFurthest to work with range so bullet lifetime is making a comeback
+        if (enemyManager.findFurthest())
         {
             // Aims at target
-            Target = enemyManager.findClosest(transform.position, range);
+            Target = enemyManager.findFurthest();
             Vector3 direction = (Target.transform.position - transform.position).normalized;
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             aimDirection = new Vector3(0, 0, angle - 90);
@@ -112,10 +121,13 @@ public class TurretScript : MonoBehaviour
             if (Time.time - timeLastFired >= fireDelay)
             {
                 timeLastFired = Time.time;
-                for (int i = 0; i < bulletCount; i++)
+                if (bulletCount <= 0 || damage <= 0 || bulletLifetime <= 0.1 || shotSpeed <= 0 || pierce <= 0)
+                {
+                    cough();
+                }
+                else
                 {
                     shootBullet();
-                    
                 }
             }
         }
@@ -130,12 +142,31 @@ public class TurretScript : MonoBehaviour
     {
         shootAudioSource.pitch = Random.Range(0.8f, 1.2f);
         shootAudioSource.PlayOneShot(shootSound);
-        GameObject bul = Instantiate(Bullet, transform.position, Quaternion.identity);
-        bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle, spreadAngle * -1), shotSpeed, damage, bulletLifetime, pierce);
+        for (int i = 0; i < bulletCount; i++)
+        {
+            GameObject bul = Instantiate(Bullet, shootPoint.transform.position, Quaternion.identity);
+            bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle, spreadAngle * -1), shotSpeed, damage, bulletLifetime, pierce);
 
-        // Homing
-        Debug.Log(isHoming);
-        bul.GetComponent<HomingMovement>().enabled = isHoming;
+            if (bulletLifetime <= 0.05f)
+            {
+                smokeParticle.Play();
+            }
+
+            Debug.Log(isHoming);
+            if (homingStrength > 0)
+            {
+                bul.GetComponent<HomingMovement>().enabled = true;
+                bul.GetComponent<TrailRenderer>().enabled = true;
+            }
+        }
+    }
+
+    public void cough()
+    {
+        shootAudioSource.pitch = Random.Range(0.6f, 1.4f);
+        shootAudioSource.PlayOneShot(ShootSounds[4]);
+        ParticleSystem smoke = Instantiate(smokeParticle, shootPoint.transform.position, Quaternion.identity);
+        smoke.transform.eulerAngles = new Vector3 (angle + 180, -90, 90);
     }
 
     public void changeCostume()
@@ -183,6 +214,7 @@ public class TurretScript : MonoBehaviour
         pierce = basePierce;
         shotSpeed = baseShotSpeed;
         range = baseRange;
+        bulletLifetime = baseBulletLifetime;
         bulletCount = baseBulletCount;
         spreadAngle = baseSpreadAngle;
         homingStrength = baseHomingStrength;
@@ -195,14 +227,13 @@ public class TurretScript : MonoBehaviour
             fireDelay -= module.fireDelay;
             shotSpeed += module.shotSpeed;
             range += module.range;
+            // Super jank way of readding bullet lifetime
+            bulletLifetime += module.range;
             bulletCount += module.bulletCount;
             spreadAngle -= module.spreadAngle;
 
-            fireRateMult += module.fireRateMult;
-
             // Special modules
-            isHoming = module.isHoming;
-            homingStrength += module.homingStrength;
+            homingStrength += module.homingStrength * 10;
         }
         //fireDelay *= (0.01f * fireRateMult);
         if (fireDelay < 0.025f)
@@ -213,9 +244,10 @@ public class TurretScript : MonoBehaviour
         {
             spreadAngle = 0f;
         }
-        bulletLifetime = range * 1.5f;
-        changeCostume();
-        turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, range, bulletCount, spreadAngle);
+        if (homingStrength > 0) // Starts all homing off with base 100 homing strength
+            homingStrength = homingStrength + 100;
+
+        turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, bulletLifetime, bulletCount, spreadAngle);
     }
 
     public void AddModule(Module newModule)
