@@ -10,21 +10,22 @@ public class HomingMovement : MonoBehaviour
     [SerializeField] private TurretScript turretScript;
     public Rigidbody2D rb;
     [SerializeField] private float homingStrength;
-    [SerializeField] private Transform Target;
+    [SerializeField] private GameObject Target;
     private Transform bulletTransform;
-
+    private EnemyManager enemyManager;
     private void Start()
     {
         Turret = GameObject.FindWithTag("Turret");
         turretScript = Turret.GetComponent<TurretScript>();
         homingStrength = turretScript.homingStrength;
+        enemyManager = FindFirstObjectByType<EnemyManager>();
     }
     private void FixedUpdate()
     {
         //Debug.Log("Homing script is running");
         // Thanks Brackeys :)
-        Target = turretScript.Target.transform;
-        Vector2 direction = (Vector2)Target.position - rb.position;
+        Target = enemyManager.findClosest(rb.position, 600);
+        Vector2 direction = (Vector2)Target.transform.position - rb.position;
         direction.Normalize();
         Debug.Log(Target);
         float rotateAmount = Vector3.Cross(direction, -1 * transform.up).z;

@@ -11,13 +11,16 @@ public class BulletScript : MonoBehaviour
     private Transform Target;
     private float timeCreated;
     [SerializeField] private TurretScript turretScript;
+    public TrailRenderer homingTrail;
 
     // Bullet's stats
     private float shotSpeed;
     private int damage;
     public int pierce;
     public float lifetime;
+    
 
+    public float baseBulletSize = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +50,10 @@ public class BulletScript : MonoBehaviour
         transform.eulerAngles = aimDirection;
         //Debug.Log(newDir);
 
-        // Sets Size (currently unused
-        //this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize) * 0.16f;
+        // Sets Size (currently unused)
+        float newBulletSize = baseBulletSize * (0.9f + (newDamage * 0.1f));
+        Debug.Log(newBulletSize);
+        this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize);
 
         // Sets stats
         shotSpeed = newShotSpeed;

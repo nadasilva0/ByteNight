@@ -21,7 +21,7 @@ public class DebugControls : MonoBehaviour
     void Update()
     {
         //Increases
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Alpha1) && script.fireDelay >= 0)
         {
             script.fireDelay -= 0.05f;
@@ -37,7 +37,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            script.bulletLifetime += 0.05f;
+            script.bulletLifetime += 0.01f;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5) && script.spreadAngle <= 25)
         {
@@ -72,7 +72,7 @@ public class DebugControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            script.bulletLifetime -= 0.05f;
+            script.bulletLifetime -= 0.01f;
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -94,18 +94,18 @@ public class DebugControls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            inventoryScript.CreateStatModule(0);
+            inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 7});
         }
-        */
+        
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            inventoryScript.CreateStatModule(5);
+            inventoryScript.CreateStatModule(3, new List<int> {0,1,2,3,4,5});
         }
 
         if (Input.GetKeyDown(KeyCode.Comma))
         {
-            inventoryScript.CreateStatModule(10);
+            inventoryScript.CreateStatModule(3, new List<int> { 0, 1, 2, 3, 4, 5, 7});
         }
         
     }
