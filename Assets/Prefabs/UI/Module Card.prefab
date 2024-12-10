@@ -244,6 +244,7 @@ MonoBehaviour:
   upgradeText: {fileID: 2579490859668865343}
   module:
     InTurret: 0
+    quality: 0
     range: 0
     fireDelay: 0
     fireRateMult: 0
@@ -338,8 +339,8 @@ MonoBehaviour:
 
     C: +1"'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c3ac929451a46d248a7d1703330d930c, type: 2}
+  m_sharedMaterial: {fileID: -8096063880106455458, guid: c3ac929451a46d248a7d1703330d930c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
