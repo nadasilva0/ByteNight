@@ -21,6 +21,8 @@ public class EnemyHealthController : MonoBehaviour
     public bool isBurning;
     public int weaknessAmount;
 
+    [SerializeField] private ParticleSystem metalSparks;
+
     public void Init(EnemyManager _enemyManager)
     {
         enemyManager = _enemyManager;
@@ -47,16 +49,25 @@ public class EnemyHealthController : MonoBehaviour
     {
         int totalDamage = 0;
         totalDamage = (damage + weaknessAmount) - damageResist;
-        if (totalDamage < 0)
+        if (totalDamage <= 0)
+        {
             totalDamage = 0;
-
-        flashEffect.Flash();
+            metalSparks.Play();
+            enemyManager.immuneSound.Play();
+            enemyManager.immuneSound.pitch = Random.Range(0.6f, 1.4f);
+        }
+        else
+        {
+            flashEffect.Flash();
+            enemyManager.damageSound.pitch = Random.Range(0.8f, 1.2f);
+            enemyManager.damageSound.Play();
+        }
         
         health -= totalDamage;
         if (health <= 0)
         {
-            // Keep in mind to change this "Destroy" to disable gameobject if you decide to use object pooling for enemies
-            enemyManager.enemiesList.Remove(this.gameObject);
+            enemyManager.monsterDeath.pitch = Random.Range(0.7f, 1.3f);
+            enemyManager.monsterDeath.Play();
             Destroy(gameObject);
         }
     }

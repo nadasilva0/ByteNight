@@ -8,19 +8,23 @@ using UnityEngine.UIElements;
 
 public class EnemyManager : MonoBehaviour
 {
+    // Wave spawning stuff
+    public Wave[] waves;
+
+    private Wave currentWave;
+    private int waveCounter = 0;
+
+    private float timeBtwnWaves;
+    private int i = 0;
+
+    private bool waveActive = false;
+
     // Enemy prefabs
     public GameObject[] EnemyPrefabs;
 
-    [Header("Attributes")]
-    [SerializeField] private int baseEnemies = 1;
-    [SerializeField] private float enemiesPerSecond = 0.5f;
-    [SerializeField] private float timeBetweenWaves = 0f;
-    [SerializeField] private float difficultyScalingFactor = 0.75f;
-
-    private int currentWave = 1;
-    private float timeSinceLastSpawn;
-    private int enemiesLeftToSpawn;
-    private bool isSpawning = false;
+    public AudioSource monsterDeath;
+    public AudioSource damageSound;
+    public AudioSource immuneSound;
 
     GameObject Conveyor;
     ModuleMaker inventoryScript;
@@ -29,54 +33,33 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public List<GameObject> enemiesList = new List<GameObject>();
     // Other
     private GameObject coolFuckingText;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        currentWave = waves[i];
+    }
+
     void Start()
     {
         coolFuckingText = GameObject.Find("extremely fucking cool bug text");
-        enemiesLeftToSpawn = baseEnemies;
         inventoryScript = FindObjectOfType<ModuleMaker>();
     }
 
-    private void StartWave()
-    {
-        isSpawning = true;
-        timeSinceLastSpawn = 0;
-        enemiesLeftToSpawn = EnemiesPerWave();
-    }
-
-    private void EndWave()
-    {
-        currentWave++;
-        isSpawning = false;
-        inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5 });
-    }
-
-    private int EnemiesPerWave()
-    {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor));
-    }
+    //inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5 });
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isSpawning)
+        if (Input.GetKeyDown(KeyCode.Space) && waveActive == false && enemiesList.Count == 0)
         {
-            StartWave();
-        }
-        if (!isSpawning) return;
-
-        timeSinceLastSpawn += Time.deltaTime;
-        if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0)
-        {
-            SpawnEnemy(EnemyPrefabs[Random.Range(0,3)]);
-            enemiesPerSecond = Random.Range(0.1f,3.0f);
-            enemiesLeftToSpawn--;
-            timeSinceLastSpawn = 0f;
-        }
-
-        if (enemiesLeftToSpawn == 0 && enemiesList.Count <= 0)
-        {
-            EndWave();
+            Debug.Log("Spawning Wave");
+            StartCoroutine(SpawnWave());
+            IncWave();
+            waveCounter++;
+            if (waveCounter == 1)
+            {
+                SpawnCoolBug();
+            }
+            Debug.Log(waveCounter);
         }
 
         // Debug spawning
@@ -106,6 +89,26 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnWave()
+    {
+        waveActive = true;
+
+        for (int j = 0; j < currentWave.EnemiesInWave.Length; j++)
+        {
+            yield return new WaitForSeconds(currentWave.TimeBeforeWaveStart[j]);
+            StartCoroutine(waitToSpawn(currentWave.TimeBetweenSpawns[j], currentWave.EnemiesInWave[j], j));
+        }
+        waveActive = false;
+    }
+    private void IncWave()
+    {
+        if (i + 1 < waves.Length)
+        {
+            i++;
+            currentWave = waves[i];
+        }
+    }
+
     public void SpawnEnemy(GameObject enemy)
     {
         GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
@@ -116,7 +119,6 @@ public class EnemyManager : MonoBehaviour
     // Use this method for the easter egg bug (enables text)
     public void SpawnCoolBug()
     {
-        GameObject bug = Instantiate(EnemyPrefabs[0], transform.position, Quaternion.identity);
         coolFuckingText.SetActive(true);
         coolFuckingText.GetComponent<CoolBugTextMovement>().isCoolBugOnScreen = true;
     }
@@ -157,5 +159,14 @@ public class EnemyManager : MonoBehaviour
         }
         return closestEnemy;
         //Debug.Log(closestEnemy);
+    }
+
+    IEnumerator waitToSpawn(float timeToWait, GameObject enemy, int j)
+    {
+        for (int i = 0; i < currentWave.NumberToSpawn[j]; i++)
+        {
+            SpawnEnemy(enemy);
+            yield return new WaitForSeconds(timeToWait);
+        }
     }
 }
