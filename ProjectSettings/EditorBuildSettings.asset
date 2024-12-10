@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AA STARTING SCENES AA/Dialogue.unity
     guid: db1fe37ba3ae094468ee3b5aed8cdfb6
+  - enabled: 1
+    path: Assets/AA STARTING SCENES AA/Tutorial 1.unity
+    guid: f421f5749f1279a4283eb0ef13d864f1
+  - enabled: 1
+    path: Assets/AA STARTING SCENES AA/Tutorial 2.unity
+    guid: c1f75aedbd472ad4283b2701bae340c0
   m_configObjects: {}
