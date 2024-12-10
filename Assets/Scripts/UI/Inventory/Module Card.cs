@@ -78,13 +78,13 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         if (module.damage > 0) 
             upgradeText.text += $"<sprite=0> +{module.damage}\n";
         if (module.fireDelay > 0)
-            upgradeText.text += $"<sprite=1> -{module.fireDelay}\n";
+            upgradeText.text += $"<sprite=1> -{module.fireDelay}<size=-10>s</size>\n";
         if (module.pierce > 0)
             upgradeText.text += $"<sprite=2> +{module.pierce}\n"; 
         if (module.shotSpeed > 0)
-            upgradeText.text += $"<sprite=3> +{module.shotSpeed}\n";
+            upgradeText.text += $"<sprite=3> +{module.shotSpeed}<size=-10>u/s</size>\n";
         if (module.range > 0)
-            upgradeText.text += $"<sprite=4> +{module.range}\n";
+            upgradeText.text += $"<sprite=4> +{module.range}<size=-10>s</size>\n";
         if (module.bulletCount > 0) 
             upgradeText.text += $"<sprite=5> +{module.bulletCount}\n";
         if (module.spreadAngle > 0) 

@@ -17,7 +17,7 @@ public class CoolBugTextMovement : MonoBehaviour
     {
         if (isCoolBugOnScreen)
         {
-            transform.position += new Vector3(0.5f, 0);
+            transform.position += new Vector3(0.3f, 0);
         }
     }
 }

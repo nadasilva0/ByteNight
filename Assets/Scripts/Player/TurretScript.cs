@@ -67,7 +67,7 @@ public class TurretScript : MonoBehaviour
     private float baseRange = 6.0f;
     private float BaseFireDelay = 1f;
     private int baseBulletCount = 1;
-    private float baseSpreadAngle = 5;
+    private float baseSpreadAngle = 0;
     private float baseShotSpeed = 15.0f;
     private int basePierce = 1;
     private float baseBulletLifetime = 0.4f;
