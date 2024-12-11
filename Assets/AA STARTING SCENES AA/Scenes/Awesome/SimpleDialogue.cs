@@ -13,7 +13,10 @@ public class SimpleDialogue : MonoBehaviour
 
     
     public Color evenColor = new Color(0.6f, 0.4f, 0.8f); 
-    public Color oddColor = new Color(0.4f, 0.8f, 0.4f); 
+    public Color oddColor = new Color(0.4f, 0.8f, 0.4f);
+
+    public Image Skeets;
+    public Image Vanessa;
 
     public GameObject dialogueBox; // The dialogue box UI element
 
@@ -51,10 +54,14 @@ public class SimpleDialogue : MonoBehaviour
         if (currentLineIndex % 2 == 0)
         {
             dialogueText.color = evenColor;
+            Skeets.color = Color.gray;
+            Vanessa.color = Color.white;
         }
         else
         {
             dialogueText.color = oddColor;
+            Skeets.color = Color.white;
+            Vanessa.color = Color.gray;
         }
     }
 }
