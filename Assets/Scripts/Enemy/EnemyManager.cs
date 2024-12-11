@@ -141,7 +141,7 @@ public class EnemyManager : MonoBehaviour
             currentWave = waves[i];
             if (currentWave.isRandomWave)
             {
-                waves[i] = generateRandomWave(currentWave);
+                currentWave = generateRandomWave(currentWave);
             }
         }
     }
@@ -225,44 +225,50 @@ public class EnemyManager : MonoBehaviour
 
     private Wave generateRandomWave(Wave _wave)
     {
-        int scaleFactor = Mathf.FloorToInt(Mathf.Pow(1.0f, waveCounter / 20));
+        int scaleFactor = Mathf.FloorToInt(Mathf.Pow(1.1f, waveCounter / 2));
         Debug.Log(scaleFactor);
         int enemyTypeCount = 1 + scaleFactor;
         int enemyCount = 0;
         
-        for (i = 0; i < _wave.EnemiesInWave.Length; i++)
+        for (int r = 0; r < _wave.EnemiesInWave.Length; r++)
         {
             if (enemyTypeCount <= 0)
-                break;
-            enemyTypeCount--;
-
-            //Sets the types of enemies that will appear
-            _wave.EnemiesInWave[i] = EnemyPrefabs[Random.Range(0, 4)];
-
-            //Sets the time until the wave appears
-            if (i == 0)
             {
-                _wave.TimeBeforeWaveStart[i] = 0;
+                _wave.TimeBeforeWaveStart[r] = 0;
+                _wave.NumberToSpawn[r] = 0;
+                _wave.TimeBetweenSpawns[r] = 0;
             }
             else
             {
-                _wave.TimeBeforeWaveStart[i] = (Random.Range(i, i + 7) - scaleFactor) + i;
-            }
+                enemyTypeCount--;
 
-            //Sets the amount of this enemy to spawn
-            if (waveCounter <= 50)
-            {
-                _wave.NumberToSpawn[i] = (Random.Range(1, 5 + scaleFactor));
-            }
-            else
-            {
-                _wave.NumberToSpawn[i] = (Random.Range(1, 10) * (scaleFactor + 1));
-            }
+                //Sets the types of enemies that will appear
+                _wave.EnemiesInWave[r] = EnemyPrefabs[Random.Range(0, 4)];
 
-            //Sets the spacing between these enemies
-            _wave.TimeBetweenSpawns[i] = (Random.Range(0.25f, 5f)) / scaleFactor;
+                //Sets the time until the wave appears
+                if (r == 0)
+                {
+                    _wave.TimeBeforeWaveStart[r] = 0;
+                }
+                else
+                {
+                    _wave.TimeBeforeWaveStart[r] = (Random.Range(r, r + 6) / ((scaleFactor / 5) + 1) + r);
+                }
+
+                //Sets the amount of this enemy to spawn
+                if (waveCounter <= 50)
+                {
+                    _wave.NumberToSpawn[r] = (Random.Range(1, 3 + (scaleFactor / 3)));
+                }
+                else
+                {
+                    _wave.NumberToSpawn[r] = (Random.Range(1, 10) * ((scaleFactor + 1) / 4));
+                }
+
+                //Sets the spacing between these enemies
+                _wave.TimeBetweenSpawns[r] = (Random.Range(1f, 6f)) / ((scaleFactor / 4) + 1);
+            }
         }
-
         return _wave;
     }
 }

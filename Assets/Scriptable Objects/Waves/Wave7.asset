@@ -17,10 +17,11 @@ MonoBehaviour:
   - {fileID: 5688213551541255089, guid: bb0d0e112e27b75478498d1e051f372c, type: 3}
   <TimeBeforeWaveStart>k__BackingField:
   - 0
-  - 7
+  - 5
   <NumberToSpawn>k__BackingField:
-  - 4
+  - 3
   - 1
   <TimeBetweenSpawns>k__BackingField:
   - 1
   - 0
+  <isRandomWave>k__BackingField: 0

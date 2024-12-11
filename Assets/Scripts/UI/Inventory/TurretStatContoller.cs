@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurretStatContoller : MonoBehaviour
 {
-    public TMP_Text[] stats;
+    public List<TMP_Text> stats;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class TurretStatContoller : MonoBehaviour
         
     }
 
-    public void UpdateStats(int damage, float firedelay, int pierce, float shotspeed, float range, int bulletcount, float spreadangle)
+    public void UpdateStats(int damage, float firedelay, int pierce, float shotspeed, float range, int bulletcount, float spreadangle, float homingStrength)
     {
         if (damage <= 0)
         {

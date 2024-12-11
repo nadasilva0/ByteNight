@@ -54,32 +54,20 @@ public class ScrapHolder : MonoBehaviour
         if (modules.Count == 2)
         {
             int qualityResult = 0;
+            int qualityChange = Random.Range(-1, 2);
+            Debug.Log(qualityChange);
             List<int> allowedStats = new List<int> { 0, 1, 1, 2, 2, 3, 3, 4, 4, 5};
             foreach (Module module in modules)
             {
-                if (module.quality == 0)
-                {
-                    if (Random.Range(0,2) == 0)
-                        qualityResult = 1;
-                }
-                else 
-                {
-                    if (Random.Range(0, (module.quality * 2) - 1) == 0)
-                        qualityResult += module.quality;
-                }
-            }
-            if (qualityResult <= 0)
-            {
-                qualityResult = 0;
-                allowedStats.Remove(0);
-                allowedStats.Remove(5);
-                allowedStats.Add(6);
+                qualityResult += module.quality;
             }
 
-            if (qualityResult >= 1)
+            qualityResult = (qualityResult / 2) + qualityChange;
+            Debug.Log(qualityResult);
+
+            if (qualityResult < 0)
             {
-                allowedStats.Remove(4);
-                allowedStats.Remove(6);
+                qualityResult = 1;
             }
 
             if (qualityResult >= 2)
@@ -91,7 +79,6 @@ public class ScrapHolder : MonoBehaviour
             if (qualityResult >= 3)
             {
                 allowedStats.Add(7);
-                qualityResult--;
             }
             if (qualityResult >= 4)
             {

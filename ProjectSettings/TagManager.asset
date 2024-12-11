@@ -13,6 +13,7 @@ TagManager:
   - ScrapInv
   - ModuleCard
   - ScrappingCard
+  - DescBox
   layers:
   - Default
   - TransparentFX

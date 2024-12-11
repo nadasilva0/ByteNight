@@ -10,6 +10,9 @@ public class TurretScript : MonoBehaviour
     // Handles modules
     public List<Module> modules = new List<Module>();
 
+    private Camera m_Camera;
+    private Vector3 mousePos;
+
     // References to parts of the Turret sprite
     public GameObject TurretBody;
     public GameObject TurretLegs;
@@ -70,7 +73,7 @@ public class TurretScript : MonoBehaviour
     private float baseRange = 6.0f;
     private float BaseFireDelay = 1f;
     private int baseBulletCount = 1;
-    private float baseSpreadAngle = 3;
+    private float baseSpreadAngle = 5;
     private float baseShotSpeed = 12.5f;
     private int basePierce = 1;
     private float baseBulletLifetime = 0.32f;
@@ -105,22 +108,27 @@ public class TurretScript : MonoBehaviour
         // temporary
         enemyManager = FindFirstObjectByType<EnemyManager>();
 
+        m_Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
         // Set stats
         UpdateModules();
     }
 
     void Update()
     {
+        mousePos = m_Camera.ScreenToWorldPoint(Input.mousePosition);
         //Handles aiming and shooting
-        // Too lazy to program findFurthest to work with range so bullet lifetime is making a comeback
+        //Move these 4 lines of code back into the findFurthest thing if you wanna reactivate auto aim
+
+        Vector3 direction = (mousePos - transform.position);
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        aimDirection = new Vector3(0, 0, angle - 90);
+        transform.eulerAngles = aimDirection;
         if (enemyManager.findFurthest())
         {
             // Aims at target
             Target = enemyManager.findFurthest();
-            Vector3 direction = (Target.transform.position - transform.position).normalized;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            aimDirection = new Vector3(0, 0, angle - 90);
-            transform.eulerAngles = aimDirection;
+            //Vector3 direction = (Target.transform.position - transform.position).normalized;
 
             // Shoots at target
             if (Time.time - timeLastFired >= fireDelay)
@@ -151,7 +159,7 @@ public class TurretScript : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             GameObject bul = Instantiate(Bullet, shootPoint.transform.position, Quaternion.identity);
-            bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle, spreadAngle * -1), shotSpeed, damage, bulletLifetime, pierce);
+            bul.GetComponent<BulletScript>().SpawnBullet(angle + Random.Range(spreadAngle / 2, spreadAngle / -2), shotSpeed, damage, bulletLifetime, pierce);
 
             if (bulletLifetime <= 0.05f)
             {
@@ -260,7 +268,7 @@ public class TurretScript : MonoBehaviour
         if (homingStrength > 0) // Starts all homing off with base 100 homing strength
             homingStrength = homingStrength + 100;
 
-        turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, bulletLifetime, bulletCount, spreadAngle);
+        turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, bulletLifetime, bulletCount, spreadAngle, homingStrength);
     }
 
     public void AddModule(Module newModule)

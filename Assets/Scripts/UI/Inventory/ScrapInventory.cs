@@ -48,7 +48,7 @@ public class ScrapInventory : MonoBehaviour
             {
                 closeMenu();
             }
-            Debug.Log(menuOn);
+            //Debug.Log(menuOn);
         }
     }
 
