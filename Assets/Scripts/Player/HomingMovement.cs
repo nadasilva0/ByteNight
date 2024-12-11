@@ -25,13 +25,16 @@ public class HomingMovement : MonoBehaviour
         //Debug.Log("Homing script is running");
         // Thanks Brackeys :)
         Target = enemyManager.findClosest(rb.position, 600);
+        if (Target == null)
+        {
+            rb.angularVelocity = 0;
+            return;
+        }
         Vector2 direction = (Vector2)Target.transform.position - rb.position;
         direction.Normalize();
         Debug.Log(Target);
         float rotateAmount = Vector3.Cross(direction, -1 * transform.up).z;
         Debug.Log(rotateAmount);
-        rb.angularVelocity = rotateAmount * homingStrength;
-        if (Target == null)
-            rb.angularVelocity = 0;
+        rb.angularVelocity = rotateAmount * homingStrength;;
     }
 }

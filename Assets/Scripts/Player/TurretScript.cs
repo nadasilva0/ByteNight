@@ -265,8 +265,8 @@ public class TurretScript : MonoBehaviour
         {
             spreadAngle = 0f;
         }
-        if (homingStrength > 0) // Starts all homing off with base 100 homing strength
-            homingStrength = homingStrength + 100;
+        //if (homingStrength > 0) // Starts all homing off with base 100 homing strength
+        //    homingStrength = homingStrength + 100;
 
         turretStatScript.UpdateStats(damage, fireDelay, pierce, shotSpeed, bulletLifetime, bulletCount, spreadAngle, homingStrength);
     }
