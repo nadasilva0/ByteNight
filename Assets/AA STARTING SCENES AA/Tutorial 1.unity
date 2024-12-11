@@ -234,6 +234,7 @@ RectTransform:
   - {fileID: 1361496495}
   - {fileID: 1603617263}
   - {fileID: 678166746}
+  - {fileID: 479317828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -241,6 +242,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &479317827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479317828}
+  - component: {fileID: 479317830}
+  - component: {fileID: 479317829}
+  m_Layer: 5
+  m_Name: SECRET SKEETS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &479317828
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479317827}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00038146973}
+  m_LocalScale: {x: 0.7165, y: 0.7165, z: 0.6515}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 322014682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1150, y: -62.00001}
+  m_SizeDelta: {x: 550, y: 800}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &479317829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479317827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d2a29f1e3eceb594f83ebdeb5d85069c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &479317830
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479317827}
+  m_CullTransparentMesh: 1
 --- !u!1001 &659024614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,14 +693,14 @@ RectTransform:
   m_GameObject: {fileID: 1099964776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8358613, y: 0.8545399, z: 0.6739939}
+  m_LocalScale: {x: 1.3185712, y: 1.3480366, z: 1.0632254}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 322014682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -4}
+  m_AnchoredPosition: {x: 76, y: 36}
   m_SizeDelta: {x: 980, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1099964778
@@ -704,8 +780,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.132}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 64}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 65.5, y: 2.5}
+  m_SizeDelta: {x: 217.49, y: 217.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361496496
 MonoBehaviour:
@@ -770,16 +846,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603617262}
-  m_LocalRotation: {x: -0, y: -0, z: 0.109930836, w: 0.9939393}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2167966, w: 0.9762168}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 322014682}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.623}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.042}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -136, y: 113}
+  m_AnchoredPosition: {x: -148, y: 112}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1603617264
@@ -991,7 +1067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3059980582293979484, guid: 1e8cf21602147144db89d17e567a664b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -59.00003
+      value: -59.00006
       objectReference: {fileID: 0}
     - target: {fileID: 3059980582293979484, guid: 1e8cf21602147144db89d17e567a664b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1008,6 +1084,10 @@ PrefabInstance:
     - target: {fileID: 3059980582293979484, guid: 1e8cf21602147144db89d17e567a664b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730385230002538107, guid: 1e8cf21602147144db89d17e567a664b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 4757133648208421049, guid: 1e8cf21602147144db89d17e567a664b, type: 3}
       propertyPath: m_margin.w
@@ -1047,6 +1127,14 @@ PrefabInstance:
       value: Dialogue Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Skeets
+      value: 
+      objectReference: {fileID: 479317829}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Vanessa
+      value: 
+      objectReference: {fileID: 479317829}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: SceneName
       value: Tutorial 2
       objectReference: {fileID: 0}
@@ -1084,29 +1172,31 @@ PrefabInstance:
       objectReference: {fileID: 1738148395}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[0]
-      value: So, to the left of me is our cool ass turret.
+      value: So, to the left of me is our sick ass turret. His name's Gargleblaster.
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[1]
-      value: You'll be using your cursor to shoot the funny ghost guys that appear.
+      value: He's pretty smart. Just point wherever you want him to shoot and he's
+        on the job!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[2]
-      value: You've got ten lives, so don't be lettin' 10 ghosts in!
+      value: Don't worry if a bad guy gets past ya every now and then, I can deal
+        with 'em inside the house.
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[3]
-      value: Don't worry if one or two guys get through, I can take 'em down inside
-        the house.
+      value: As long as they don't keep getting in, I can work on fixing up any of
+        the damage they caused!!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[4]
-      value: As long as I don't get overwhelmed, I can repair your house for you
-        over time, too!
+      value: If you wanna give our friend a sweet new look, just press TAB on that
+        control panel I gave ya!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[5]

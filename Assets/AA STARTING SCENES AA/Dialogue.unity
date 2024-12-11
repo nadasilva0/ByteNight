@@ -148,16 +148,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174399608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0742427, y: 1.0742427, z: 1.0742427}
+  m_LocalScale: {x: 0.9666358, y: 0.9666358, z: 0.9666358}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 431184250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -239}
+  m_AnchoredPosition: {x: 150, y: -161}
   m_SizeDelta: {x: 300, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174399610
@@ -624,6 +624,14 @@ PrefabInstance:
       value: Dialogue Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Skeets
+      value: 
+      objectReference: {fileID: 1324109563}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Vanessa
+      value: 
+      objectReference: {fileID: 174399610}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: SceneName
       value: Tutorial 1
       objectReference: {fileID: 0}
@@ -686,6 +694,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[5]
+      value: Doesn't matter, check out this instruction manual.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: dialogueLines.Array.data[6]
       value: Doesn't matter, check out this instruction manual.
       objectReference: {fileID: 0}
     - target: {fileID: 8356040606849826441, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
@@ -811,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405192061032472203, guid: 26afa48c9b79dd2448ea3d56967e8231, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -59.00003
+      value: -59.00006
       objectReference: {fileID: 0}
     - target: {fileID: 1405192061032472203, guid: 26afa48c9b79dd2448ea3d56967e8231, type: 3}
       propertyPath: m_AnchoredPosition.y
