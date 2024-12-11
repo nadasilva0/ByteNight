@@ -11,6 +11,8 @@ TagManager:
   - TurretInv
   - TurretStatDisplay
   - ScrapInv
+  - ModuleCard
+  - ScrappingCard
   layers:
   - Default
   - TransparentFX

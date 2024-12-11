@@ -18,8 +18,12 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
     GameObject TurInv;
     ModuleHolder TurInvscript;
 
+    public bool inScrapMenu;
+
     public Sprite[] moduleBackground;
+    public Sprite[] moduleIcon;
     public Image imageComponent;
+    public Image modIconSprite;
     [SerializeField] private bool inTurret = false;
     GameObject Conveyor;
     ModuleMaker ConveyorInvScript;
@@ -33,6 +37,7 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
 
     public AudioClip equipSound;
     public AudioClip unequipSound;
+    public AudioClip errorSound;
 
     private void Start()
     {
@@ -57,60 +62,61 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         upgradeText.text = "";
         module = _module;
         int moduleBg = 0;
+        int modIcon = 0;
         // Change background depending on module quality/specialness
         if (module.homingStrength > 0)
         {
             moduleBg = 2;
+            modIcon = 1;
         }
-        else
+        else if (module.quality > 2)
         {
-            if(module.quality > 2)
-            {
-                moduleBg = 1;
-            }
+            moduleBg = 1;
         }
         imageComponent.sprite = moduleBackground[moduleBg];
+        modIconSprite.sprite = moduleIcon[modIcon];
 
         // Positive stats
 
         if (module.homingStrength > 0)
-            upgradeText.text += $"<sprite=7> +{module.homingStrength}\n";
+            upgradeText.text += $"<sprite=7>+{module.homingStrength}\n";
         if (module.damage > 0) 
-            upgradeText.text += $"<sprite=0> +{module.damage}\n";
+            upgradeText.text += $"<sprite=0>+{module.damage}\n";
         if (module.fireDelay > 0)
-            upgradeText.text += $"<sprite=1> -{module.fireDelay}<size=-10>s</size>\n";
+            upgradeText.text += $"<sprite=1>-{module.fireDelay}<size=7>s</size>\n";
         if (module.pierce > 0)
-            upgradeText.text += $"<sprite=2> +{module.pierce}\n"; 
+            upgradeText.text += $"<sprite=2>+{module.pierce}\n"; 
         if (module.shotSpeed > 0)
-            upgradeText.text += $"<sprite=3> +{module.shotSpeed}<size=-10>u/s</size>\n";
+            upgradeText.text += $"<sprite=3>+{module.shotSpeed}<size=7>u/s</size>\n";
         if (module.range > 0)
-            upgradeText.text += $"<sprite=4> +{module.range}<size=-10>s</size>\n";
+            upgradeText.text += $"<sprite=4>+{module.range}<size=7>s</size>\n";
         if (module.bulletCount > 0) 
-            upgradeText.text += $"<sprite=5> +{module.bulletCount}\n";
+            upgradeText.text += $"<sprite=5>+{module.bulletCount}\n";
         if (module.spreadAngle > 0) 
-            upgradeText.text += $"<sprite=6> -{module.spreadAngle}°\n";
+            upgradeText.text += $"<sprite=6>-{module.spreadAngle}°\n";
         // Negative stats
         if (module.homingStrength < 0)
-            upgradeText.text += $"<sprite=7> <color=\"red\">{module.homingStrength}</color>\n";
+            upgradeText.text += $"<sprite=7><color=#d40000>{module.homingStrength}</color>\n";
         if (module.damage < 0)
-            upgradeText.text += $"<sprite=0> <color=\"red\">{module.damage}</color>\n";
+            upgradeText.text += $"<sprite=0><color=#d40000>{module.damage}</color>\n";
         if (module.fireDelay < 0)
-            upgradeText.text += $"<sprite=1> <color=\"red\">+{Mathf.Abs(module.fireDelay)}</color>\n";
+            upgradeText.text += $"<sprite=1><color=#d40000>+{Mathf.Abs(module.fireDelay)}<size=7>s</size></color>\n";
         if (module.pierce < 0)
-            upgradeText.text += $"<sprite=2> <color=\"red\">{module.pierce}</color>\n";
+            upgradeText.text += $"<sprite=2><color=#d40000>{module.pierce}</color>\n";
         if (module.shotSpeed < 0)
-            upgradeText.text += $"<sprite=3> <color=\"red\">{module.shotSpeed}</color>\n";
+            upgradeText.text += $"<sprite=3><color=#d40000>{module.shotSpeed}<size=7>u/s</size></color>\n";
         if (module.range < 0)
-            upgradeText.text += $"<sprite=4> <color=\"red\">{module.range}</color>\n";
+            upgradeText.text += $"<sprite=4><color=#d40000>{module.range}<size=7>s</size></color>\n";
         if (module.bulletCount < 0)
-            upgradeText.text += $"<sprite=5> <color=\"red\">{module.bulletCount}</color>\n";
+            upgradeText.text += $"<sprite=5><color=#d40000>{module.bulletCount}</color>\n";
         if (module.spreadAngle < 0)
-            upgradeText.text += $"<sprite=6> <color=\"red\">+{Mathf.Abs(module.spreadAngle)}°</color>\n";
+            upgradeText.text += $"<sprite=6><color=#d40000>+{Mathf.Abs(module.spreadAngle)}°</color>\n";
     }
     
     public void CantEquipModule(string reason)
     {
         Debug.Log(reason);
+        trueTurInventoryScript.PlaySound(errorSound);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -168,6 +174,10 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         {
             CantEquipModule("Menu not open!");
         }
-        Destroy(gameObject); // for testing purposes
+    }
+
+    public void destroyScraps()
+    {
+        Destroy(gameObject);
     }
 }

@@ -25,6 +25,7 @@ public class BasicEnemyMovement : MonoBehaviour
         if (distanceTraveled > 38)
         {
             livesController.health -= 1;
+            livesController.hasLostLives = true;
             Destroy(gameObject);
         }
     }

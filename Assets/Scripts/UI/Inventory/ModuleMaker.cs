@@ -13,10 +13,9 @@ public class ModuleMaker : MonoBehaviour
 
     private void Start()
     {
-        //Creates 4 stat modules to start
-        CreatePositiveStatModule(0);
-        CreatePositiveStatModule(0);
-        CreatePositiveStatModule(0);
+        //Creates 2 stat modules to start
+        CreatePositiveStatModule(1, new List<int> {1, 2, 3});
+        CreatePositiveStatModule(1, new List<int> { 1, 2, 3});
     }
 
     public Module setupStats(Module newModule, int quality, int isDebuff, List<int> allowedStats)
@@ -140,7 +139,7 @@ public class ModuleMaker : MonoBehaviour
                 allowedStats.Add(2);
             }
         }
-        Debug.Log(allowedStats);
+        //Debug.Log(allowedStats);
         // Adds one of the stats
         int choice = allowedStats[Random.Range(0, allowedStats.Count)];
         //Debug.Log(choice);
@@ -187,7 +186,7 @@ public class ModuleMaker : MonoBehaviour
     }
     public int generateDamage(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1, quality + 1);
+        int newStat = Random.Range(1, (quality + 1) / 2);
         if (isDebuff == 1)
         {
             newStat = newStat * -1;
@@ -206,7 +205,7 @@ public class ModuleMaker : MonoBehaviour
 
     public int generateBulletCount(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1, quality + 1);
+        int newStat = Random.Range(1, (quality + 1) / 2);
         if (isDebuff == 1)
         {
             newStat = newStat * -1;
@@ -217,29 +216,29 @@ public class ModuleMaker : MonoBehaviour
     {
         //This technically generates bullet lifetime because of how I reprogrammed range
         float newStat = Random.Range(0.1f + (0.1f * (quality + 1)), 0.2f + (0.3f * (quality + 1)));
-        newStat = Mathf.Round(newStat * 10f) / 10f;
         if (isDebuff == 1)
         {
             newStat = newStat * -1.5f;
-            newStat = Mathf.Round(newStat * 10f) / 10f;
         }
+        newStat = Mathf.Round(newStat * 10f) / 10f;
         return newStat;
     }
     public float generateShotSpeed(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1 + quality, 6 + (2 * (quality + 1)));
+        float newStat = Random.Range(0.5f + quality / 2, 1f + (quality));
         if (isDebuff == 1)
         {
-            newStat = newStat * -1;
+            newStat = newStat * -1.5f;
         }
+        newStat = Mathf.Round(newStat * 10f) / 10f;
         return newStat;
     }
     public float generateAccuracy(int quality, int isDebuff)
     {
-        int newStat = Random.Range(5, 16 - (2 * (quality + 1)));
+        int newStat = Random.Range(2, 6 - (2 * (quality + 1)));
         if (isDebuff == 1)
         {
-            newStat = newStat * -1;
+            newStat = newStat * -2;
         }
         return newStat;
     }
@@ -335,35 +334,89 @@ public class ModuleMaker : MonoBehaviour
             }
         }
 
+
+
         if (newModule.homingStrength > 0) // Guarantees that homing modules have at least 1 extra positive stat that is either a pierce or range buff
         {
             newModule = setupStats(newModule, quality, 0, new List<int> {2, 4, 4, 4});
         }
-        
+
+        newModule.quality = quality;
         // Sets display
         if (positiveOdds == 1)
             newModule.quality += 1;
         newCard.setStatDisplay(newModule);
+
+        audioSource.PlayOneShot(moduleCreateSound);
     }
 
-    public void CreatePositiveStatModule(int quality)
+    // Yandev moment
+    public void CreatePositiveStatModule(int quality, List<int> allowedStats)
     {
         ModuleCard newCard = Instantiate(cardPrefab, transform);
         Module newModule = new Module();
         newModule.InTurret = false;
 
-        // Calculates number of stats, uses Quality stat to raise the odds of getting two stats on one module
+        int positiveOdds = 1; // If this is 1, the second stat will be positive, otherwise it is negative. Higher quality = higher chance to be 1
+
+        // Chooses how many stats to generate
         int numberOfStats = 1;
-        int numberOdds = 1 / Random.Range(1, (10 - quality));
+        int numberOdds = 1;
+        if (positiveOdds == 1) // If the second stat would be positive, lower chance to generate the second stat.
+        {
+            numberOdds = 1 / Random.Range(1, (10 - quality)); // Chance to generate a positive second stat is affected by quality
+        }
+        else // If the second stat would be negative, higher chance to generate the second stat.
+        {
+            numberOdds = 1 / Random.Range(1, 4);
+        }
+
         if (numberOdds == 1)
             numberOfStats = 2;
 
+        Debug.Log(numberOdds);
+        int baseNumberOfStats = numberOfStats;
         // Generates the stats
         for (int i = 0; i < numberOfStats; i++)
         {
-            newModule = setupStats(newModule, quality, 0, new List<int> {0, 1, 2, 3, 4, 5 });
+            // Decides whether or not the stat should be positive or negative, chance of negative stat decreases as quality increases. First stat can never be negative.
+            // There's almost definitely a better way to do this but time crunch moment
+            if (positiveOdds == 1) //Both stats that would be generated are positive
+            {
+                if (i == 0) // If this is the first stat 
+                {
+                    newModule = setupStats(newModule, quality, 0, allowedStats);
+                }
+                else // If this is the second stat
+                {
+                    allowedStats.Add(6); // Adds Accuracy to the pool of shit that can be changed
+                    newModule = setupStats(newModule, quality, 0, allowedStats);
+                }
+            }
+            else //The second stat will be negative
+            {
+                if (i == 0)
+                {
+                    newModule = setupStats(newModule, quality, 0, allowedStats);
+                }
+                else
+                {
+                    allowedStats.Add(6); // Adds Accuracy to the pool of shit that can be changed
+                    newModule = setupStats(newModule, quality, 1, allowedStats);
+                }
+            }
         }
 
+
+
+        if (newModule.homingStrength > 0) // Guarantees that homing modules have at least 1 extra positive stat that is either a pierce or range buff
+        {
+            newModule = setupStats(newModule, quality, 0, new List<int> { 2, 4, 4, 4 });
+        }
+
+        // Sets display
+        if (positiveOdds == 1)
+            newModule.quality += 1;
         newCard.setStatDisplay(newModule);
     }
 

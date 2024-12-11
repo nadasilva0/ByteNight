@@ -5,6 +5,9 @@ using UnityEngine;
 public class ScrapInventory : MonoBehaviour
 {
     public GameObject ScrapInv;
+    // Handles Audio
+    public AudioSource equipSource;
+    public AudioSource scrapSource;
     public AudioSource invOpenSource;
     public AudioSource invCloseSource;
 
@@ -18,9 +21,6 @@ public class ScrapInventory : MonoBehaviour
 
     bool gameStarted = false;
 
-    // Handles Audio
-    public AudioSource equipSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,24 +32,35 @@ public class ScrapInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !trueTurInventoryScript.menuOn)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            menuOn = !menuOn;
-            if (menuOn)
+            if (trueTurInventoryScript.menuOn)
+            {
+                trueTurInventoryScript.closeMenu();
+            }
+            if (!menuOn)
             {
                 invOpenSource.Play();
                 ScrapInv.transform.localScale = Vector3.one;
+                menuOn = true;
             }
             else
             {
-                invCloseSource.Play();
-                ScrapInv.transform.localScale = Vector3.zero;
+                closeMenu();
             }
+            Debug.Log(menuOn);
         }
     }
 
-    public void PlaySound(AudioClip clip)
+    public void closeMenu()
     {
+        invCloseSource.Play();
+        ScrapInv.transform.localScale = Vector3.zero;
+        menuOn = false;
+    }
+
+    public void PlaySound(AudioClip clip)
+    { 
         equipSource.PlayOneShot(clip);
     }
 }

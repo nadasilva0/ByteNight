@@ -22,41 +22,40 @@ public class DebugControls : MonoBehaviour
     {
         //Increases
         
-        if (Input.GetKeyDown(KeyCode.Alpha1) && script.fireDelay >= 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            script.fireDelay -= 0.05f;
+            inventoryScript.CreateStatModule(3, new List<int> {0});
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            script.damage += 1;
-            script.changeCostume();
+            inventoryScript.CreateStatModule(3, new List<int> { 1 });
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            script.shotSpeed += 1f;
+            inventoryScript.CreateStatModule(3, new List<int> { 2 });
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            script.bulletLifetime += 0.01f;
+            inventoryScript.CreateStatModule(3, new List<int> { 3 });
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) && script.spreadAngle <= 25)
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            script.spreadAngle += 1f;
-            script.changeCostume();
+            inventoryScript.CreateStatModule(3, new List<int> { 4 });
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            script.bulletCount += 1;
+            inventoryScript.CreateStatModule(3, new List<int> { 5 });
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            script.pierce += 1;
+            inventoryScript.CreateStatModule(3, new List<int> { 6 });
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            script.range += 0.1f;
+            inventoryScript.CreateStatModule(3, new List<int> { 7 });
         }
         //Decreases
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             script.fireDelay += 0.05f;
@@ -91,16 +90,11 @@ public class DebugControls : MonoBehaviour
         {
             script.range -= 0.1f;
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.M))
         {
             inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 7});
-        }
-        
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            inventoryScript.CreateStatModule(3, new List<int> {0,1,2,3,4,5});
         }
 
         if (Input.GetKeyDown(KeyCode.Comma))

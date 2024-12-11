@@ -47,14 +47,15 @@ public class EnemyHealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("taken damage");
         int totalDamage = 0;
         totalDamage = (damage + weaknessAmount) - damageResist;
         if (totalDamage <= 0)
         {
             totalDamage = 0;
             metalSparks.Play();
-            enemyManager.immuneSound.Play();
             enemyManager.immuneSound.pitch = Random.Range(0.6f, 1.4f);
+            enemyManager.immuneSound.Play();
         }
         else
         {
@@ -66,6 +67,7 @@ public class EnemyHealthController : MonoBehaviour
         health -= totalDamage;
         if (health <= 0)
         {
+            Debug.Log("Killed");
             enemyManager.monsterDeath.pitch = Random.Range(0.7f, 1.3f);
             enemyManager.monsterDeath.Play();
             Destroy(gameObject);

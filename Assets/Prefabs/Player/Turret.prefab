@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 2503371075871654768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.283, z: 0}
+  m_LocalPosition: {x: 0, y: 0.156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,6 +103,7 @@ Transform:
   - {fileID: 4791345012599195043}
   - {fileID: 2421194834354666823}
   - {fileID: 1337426428414632880}
+  - {fileID: 5057877785099839060}
   m_Father: {fileID: 3945875629475806582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5538058156917402908
@@ -136,12 +137,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1b83faae6c69f1940a37d48b735f3b94, type: 3}
   - {fileID: 8300000, guid: 13bc918a909c83042911bb1cd9aa7378, type: 3}
   - {fileID: 8300000, guid: f85f7343ec812f442a0220161a438ef2, type: 3}
-  - {fileID: 8300000, guid: dd2d3f209eaa6da4db4608ee33a2ebbf, type: 3}
+  - {fileID: 8300000, guid: 16d918968dc1a2846b60b76874a3c06e, type: 3}
   smokeParticle: {fileID: 4011978175590790133, guid: 2e60da03da795c449bc0820a782c9846, type: 3}
   upgradeSparks: {fileID: 2539879259047257143}
   upgradeSpraypaint: {fileID: 4012859168203958067}
   upgradeDrillSparks: {fileID: 8335681545213332423}
   shootPoint: {fileID: 2503371075871654768}
+  coughPoint: {fileID: 7563101039689545199}
+  previousDamage: 0
   Bullet: {fileID: 4896216852476013290, guid: 6226ccb288b9b2c4da3b3d4a1ee8c7da, type: 3}
   Target: {fileID: 0}
   aimDirection: {x: 0, y: 0, z: 0}
@@ -268,7 +271,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e3a2b513ea124c642b9a5e990688960d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: abdc6d9ad9377de4a8636a4afe99f587, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -652,6 +655,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7563101039689545199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5057877785099839060}
+  m_Layer: 0
+  m_Name: CoughPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5057877785099839060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563101039689545199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.392, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2763949023383820500}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8005124111068380715
 GameObject:
   m_ObjectHideFlags: 0

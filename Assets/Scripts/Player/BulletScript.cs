@@ -52,7 +52,7 @@ public class BulletScript : MonoBehaviour
 
         // Sets Size (currently unused)
         float newBulletSize = baseBulletSize * (0.9f + (newDamage * 0.1f));
-        Debug.Log(newBulletSize);
+        //Debug.Log(newBulletSize);
         this.transform.localScale = new Vector3(newBulletSize, newBulletSize, newBulletSize);
 
         // Sets stats
@@ -70,11 +70,9 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (pierce <= 0)
-            return;
         if (collision.GetComponent<Collider2D>().tag == "Enemy")
         {
-            //Debug.Log("Enemy hit");
+            Debug.Log("Enemy hit");
             EnemyHealthController enemyHealth = collision.gameObject.GetComponent<EnemyHealthController>();
             enemyHealth.TakeDamage(damage);
             pierce = pierce - (enemyHealth.pierceResist + 1);

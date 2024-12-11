@@ -31,6 +31,9 @@ public class TurretScript : MonoBehaviour
     public ParticleSystem upgradeDrillSparks;
 
     public GameObject shootPoint;
+    public GameObject coughPoint;
+
+    public int previousDamage;
 
     ModuleHolder turretInventoryScript;
     TurretStatContoller turretStatScript;
@@ -67,10 +70,10 @@ public class TurretScript : MonoBehaviour
     private float baseRange = 6.0f;
     private float BaseFireDelay = 1f;
     private int baseBulletCount = 1;
-    private float baseSpreadAngle = 0;
-    private float baseShotSpeed = 15.0f;
+    private float baseSpreadAngle = 3;
+    private float baseShotSpeed = 12.5f;
     private int basePierce = 1;
-    private float baseBulletLifetime = 0.4f;
+    private float baseBulletLifetime = 0.32f;
     private float baseHomingStrength = 0f;
     private float baseBurnTime = 2.0f;
 
@@ -95,6 +98,8 @@ public class TurretScript : MonoBehaviour
         turretStatObject = GameObject.FindWithTag("TurretStatDisplay");
         turretInventoryScript = turretInv.GetComponent<ModuleHolder>();
         turretStatScript = turretStatObject.GetComponent<TurretStatContoller>();
+
+        previousDamage = baseDamage;
 
         shootAudioSource = GetComponent<AudioSource>();
         // temporary
@@ -141,7 +146,8 @@ public class TurretScript : MonoBehaviour
     public void shootBullet()
     {
         shootAudioSource.pitch = Random.Range(0.8f, 1.2f);
-        shootAudioSource.PlayOneShot(shootSound);
+        shootAudioSource.clip = shootSound;
+        shootAudioSource.Play();
         for (int i = 0; i < bulletCount; i++)
         {
             GameObject bul = Instantiate(Bullet, shootPoint.transform.position, Quaternion.identity);
@@ -152,7 +158,7 @@ public class TurretScript : MonoBehaviour
                 smokeParticle.Play();
             }
 
-            Debug.Log(isHoming);
+            //Debug.Log(isHoming);
             if (homingStrength > 0)
             {
                 bul.GetComponent<HomingMovement>().enabled = true;
@@ -164,13 +170,20 @@ public class TurretScript : MonoBehaviour
     public void cough()
     {
         shootAudioSource.pitch = Random.Range(0.6f, 1.4f);
-        shootAudioSource.PlayOneShot(ShootSounds[4]);
-        ParticleSystem smoke = Instantiate(smokeParticle, shootPoint.transform.position, Quaternion.identity);
+        shootAudioSource.clip = ShootSounds[4];
+        shootAudioSource.Play();
+        ParticleSystem smoke = Instantiate(smokeParticle, coughPoint.transform.position, Quaternion.identity);
         smoke.transform.eulerAngles = new Vector3 (angle + 180, -90, 90);
     }
 
     public void changeCostume()
     {
+        if (previousDamage != damage)
+        {
+            upgradeSpraypaint.Play();
+            previousDamage = damage;
+            upgradeAudioSource.Play();
+        }
         //Damage
         switch (damage)
         {

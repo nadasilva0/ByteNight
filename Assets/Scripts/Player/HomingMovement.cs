@@ -31,5 +31,7 @@ public class HomingMovement : MonoBehaviour
         float rotateAmount = Vector3.Cross(direction, -1 * transform.up).z;
         Debug.Log(rotateAmount);
         rb.angularVelocity = rotateAmount * homingStrength;
+        if (Target == null)
+            rb.angularVelocity = 0;
     }
 }
