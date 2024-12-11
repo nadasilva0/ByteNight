@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class StatHoverDescription : MonoBehaviour
+public class StatHoverDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private GameObject textBox;
-    private TMP_Text statText;
-    public string mouseOverText;
+    public GameObject textBox;
     // Start is called before the first frame update
     void Start()
     {
-        textBox = GameObject.FindGameObjectWithTag("DescBox");
-        statText = textBox.GetComponent<TMP_Text>();
+
     }
 
-    public void OnMouseOver()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         textBox.SetActive(true);
     }
 
-    public void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         textBox.SetActive(false);
     }
