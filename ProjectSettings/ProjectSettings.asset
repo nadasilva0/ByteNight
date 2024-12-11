@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: ByteNight Team
   productName: ByteNight
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 0842f57cf4c84084295487b77cb6a9d0, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   m_ShowUnitySplashScreen: 1

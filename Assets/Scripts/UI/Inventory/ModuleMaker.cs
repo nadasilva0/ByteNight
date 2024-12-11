@@ -23,6 +23,18 @@ public class ModuleMaker : MonoBehaviour
         // Changes the options in the list if the module is being run through this code a second time depending on what stats the module already has
         // May add multiple copies of stuff to increase the weight (ie homing has a higher chance of being coupled with a negative shot speed or fire rate)
         // We're yandeving this shit idc anymore
+        if (isDebuff == 1)
+        {
+            allowedStats.Add(6);
+            allowedStats.Add(6);
+            allowedStats.Add(6);
+            allowedStats.Add(6);
+            if (quality <= 2)
+            {
+                allowedStats.Add(6);
+                allowedStats.Add(6);
+            }
+        }
         if (newModule.damage != 0)
         {
             allowedStats.Remove(0);
@@ -41,10 +53,6 @@ public class ModuleMaker : MonoBehaviour
             {
                 allowedStats.Add(6);
                 allowedStats.Add(6);
-                allowedStats.Add(6);
-                allowedStats.Add(6);
-                allowedStats.Add(6);
-                allowedStats.Add(6);
             }
         }
         if (newModule.pierce != 0)
@@ -59,6 +67,8 @@ public class ModuleMaker : MonoBehaviour
                 allowedStats.Add(4);
                 allowedStats.Add(4);
                 allowedStats.Add(4);
+                allowedStats.Add(4);
+                allowedStats.Add(4);
             }
         }
         if (newModule.range != 0)
@@ -66,6 +76,8 @@ public class ModuleMaker : MonoBehaviour
             allowedStats.Remove(4);
             if (isDebuff == 1)
             {
+                allowedStats.Add(3);
+                allowedStats.Add(3);
                 allowedStats.Add(3);
                 allowedStats.Add(3);
                 allowedStats.Add(3);
@@ -186,7 +198,7 @@ public class ModuleMaker : MonoBehaviour
     }
     public int generateDamage(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1, (quality + 1) / 2);
+        int newStat = Random.Range(1 + (quality / 3), (quality + 1) / 2);
         if (isDebuff == 1)
         {
             newStat = newStat * -1;
@@ -195,7 +207,7 @@ public class ModuleMaker : MonoBehaviour
     }
     public int generatePierce(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1, quality + 2);
+        int newStat = Random.Range(1 + (quality / 2), quality + 2);
         if (isDebuff == 1)
         {
             newStat = newStat * -1;
@@ -205,7 +217,7 @@ public class ModuleMaker : MonoBehaviour
 
     public int generateBulletCount(int quality, int isDebuff)
     {
-        int newStat = Random.Range(1, (quality + 1) / 2);
+        int newStat = Random.Range(1 + (quality / 3), (quality + 1) / 2);
         if (isDebuff == 1)
         {
             newStat = newStat * -1;
@@ -225,7 +237,7 @@ public class ModuleMaker : MonoBehaviour
     }
     public float generateShotSpeed(int quality, int isDebuff)
     {
-        float newStat = Random.Range(0.5f + quality / 2, 1f + (quality));
+        float newStat = Random.Range(0.5f + (quality / 2), 1.1f + (quality));
         if (isDebuff == 1)
         {
             newStat = newStat * -1.5f;
@@ -284,24 +296,24 @@ public class ModuleMaker : MonoBehaviour
         Module newModule = new Module();
         newModule.InTurret = false;
 
-        int positiveOdds = 1 / Random.Range(1, (8 - quality)); // If this is 1, the second stat will be positive, otherwise it is negative. Higher quality = higher chance to be 1
+        int positiveOdds = 1 / Random.Range(1, 3); ; // If this is 1, the second stat will be positive, otherwise it is negative. Higher quality = higher chance to be 1
 
         // Chooses how many stats to generate
         int numberOfStats = 1;
         int numberOdds = 1;
         if (positiveOdds == 1) // If the second stat would be positive, lower chance to generate the second stat.
         {
-            numberOdds = 1 / Random.Range(1, (10 - quality)); // Chance to generate a positive second stat is affected by quality
+            numberOdds = 1 / Random.Range(1, (5 / ((quality / 2) + 1))); // Chance to generate a positive second stat is affected by quality
         }
         else // If the second stat would be negative, higher chance to generate the second stat.
         {
-            numberOdds = 1 / Random.Range(1, 4);
+            numberOdds = 1;
         }
 
         if (numberOdds == 1)
             numberOfStats = 2;
 
-        Debug.Log(numberOdds);
+        //Debug.Log(numberOdds);
         int baseNumberOfStats = numberOfStats;
         // Generates the stats
         for (int i = 0; i < numberOfStats; i++)
@@ -316,7 +328,6 @@ public class ModuleMaker : MonoBehaviour
                 }
                 else // If this is the second stat
                 {
-                    allowedStats.Add(6); // Adds Accuracy to the pool of shit that can be changed
                     newModule = setupStats(newModule, quality, 0, allowedStats);
                 }
             }
@@ -328,7 +339,6 @@ public class ModuleMaker : MonoBehaviour
                 }
                 else
                 {
-                    allowedStats.Add(6); // Adds Accuracy to the pool of shit that can be changed
                     newModule = setupStats(newModule, quality, 1, allowedStats);
                 }
             }

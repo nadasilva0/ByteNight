@@ -1052,15 +1052,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: oddColor.b
-      value: 0
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: oddColor.g
-      value: 0.56078434
+      value: 0.60784316
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: oddColor.r
-      value: 0
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueBox
@@ -1068,15 +1068,15 @@ PrefabInstance:
       objectReference: {fileID: 2019193905}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: evenColor.b
-      value: 0
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: evenColor.g
-      value: 0.5622641
+      value: 0.60784316
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: evenColor.r
-      value: 0
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueText

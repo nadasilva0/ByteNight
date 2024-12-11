@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e124e390149b41b75d7d1a9afb4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   distanceTraveled: 0
 --- !u!114 &6566269111561981888
 MonoBehaviour:
@@ -121,6 +121,7 @@ MonoBehaviour:
   pierceResist: 0
   isBurning: 0
   weaknessAmount: 0
+  metalSparks: {fileID: 0}
 --- !u!58 &303165737350178965
 CircleCollider2D:
   m_ObjectHideFlags: 0

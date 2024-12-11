@@ -15,12 +15,17 @@ MonoBehaviour:
   <EnemiesInWave>k__BackingField:
   - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
   - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
+  - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
   <TimeBeforeWaveStart>k__BackingField:
   - 0
   - 0.3
+  - 8.6
   <NumberToSpawn>k__BackingField:
-  - 3
-  - 3
+  - 4
+  - 4
+  - 2
   <TimeBetweenSpawns>k__BackingField:
   - 2
   - 2
+  - 0.3
+  <isRandomWave>k__BackingField: 0
