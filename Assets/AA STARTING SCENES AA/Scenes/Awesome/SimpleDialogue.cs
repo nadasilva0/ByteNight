@@ -24,7 +24,7 @@ public class SimpleDialogue : MonoBehaviour
         ShowDialogue();
     }
 
-    public void OnClick()
+    public void Click()
     {
         // Move to the next line of dialogue
         currentLineIndex++;
@@ -38,6 +38,7 @@ public class SimpleDialogue : MonoBehaviour
             // Hide the dialogue box when all lines are done
             dialogueBox.SetActive(false);
             GameObject.FindObjectOfType<SimpleSceneTransition>().ChangeScene(SceneName);
+
         }
     }
 

@@ -1,21 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections; // Needed for IEnumerator and coroutines
+using System.Collections;
 
 public class SimpleSceneTransition : MonoBehaviour
 {
     public Image fadeImage; // Assign the black full-screen Image in the Inspector
     public float fadeDuration = 1.0f; // Time for fade effect
 
+    private bool isFading = false; // Prevent multiple clicks during transitions
+
     private void Start()
     {
-        // Start the fade-in effect when the scene loads
+        fadeImage.raycastTarget = false; // Prevent blocking input initially
         StartCoroutine(FadeIn());
     }
 
     public void ChangeScene(string sceneName)
     {
+        if (isFading) return; // Block additional input during transition
+        isFading = true; // Set flag to indicate transition in progress
         StartCoroutine(FadeOutAndChangeScene(sceneName));
     }
 
@@ -33,8 +37,7 @@ public class SimpleSceneTransition : MonoBehaviour
             yield return null;
         }
 
-        // Disable raycast after fade-in
-        fadeImage.raycastTarget = false;
+        fadeImage.raycastTarget = false; // Allow input after fade-in
     }
 
     private IEnumerator FadeOutAndChangeScene(string sceneName)
@@ -52,7 +55,6 @@ public class SimpleSceneTransition : MonoBehaviour
             yield return null;
         }
 
-        // Load the new scene
         SceneManager.LoadScene(sceneName);
     }
 }

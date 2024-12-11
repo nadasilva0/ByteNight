@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AA STARTING SCENES AA/Credits.unity
     guid: 3340ceaf85b29b94fa2865d4ea73efa5
+  - enabled: 1
+    path: Assets/AA STARTING SCENES AA/Tutorial 3.unity
+    guid: ac238fc94f193ed48bec6d5bc3bfa849
   m_configObjects: {}
