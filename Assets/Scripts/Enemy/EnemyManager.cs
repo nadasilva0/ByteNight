@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,10 +15,12 @@ public class EnemyManager : MonoBehaviour
     private Wave currentWave;
     private int waveCounter = 0;
 
-    private float timeBtwnWaves;
     private int i = 0;
 
     private bool waveActive = false;
+    private bool endOfRoundModuleGiven = true;
+
+    public TMP_Text roundDisplay;
 
     // Enemy prefabs
     public GameObject[] EnemyPrefabs;
@@ -25,6 +28,8 @@ public class EnemyManager : MonoBehaviour
     public AudioSource monsterDeath;
     public AudioSource damageSound;
     public AudioSource immuneSound;
+
+    public PlayerLivesController playerLivesController;
 
     GameObject Conveyor;
     ModuleMaker inventoryScript;
@@ -36,12 +41,14 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         currentWave = waves[i];
+        Debug.Log("Enemymanager Active");
     }
 
     void Start()
     {
         coolFuckingText = GameObject.Find("extremely fucking cool bug text");
         inventoryScript = FindObjectOfType<ModuleMaker>();
+        playerLivesController = FindObjectOfType<PlayerLivesController>();
     }
 
     //inventoryScript.CreateStatModule(0, new List<int> { 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5 });
@@ -49,43 +56,69 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space) && waveActive == false && enemiesList.Count == 0)
         {
+            endOfRoundModuleGiven = false;
             Debug.Log("Spawning Wave");
             StartCoroutine(SpawnWave());
             IncWave();
             waveCounter++;
-            if (waveCounter == 1)
+            roundDisplay.text = $"Round {waveCounter}\n";
+            if (waveCounter == 50)
             {
                 SpawnCoolBug();
             }
             Debug.Log(waveCounter);
         }
 
+        //End of wave
+        if (enemiesList.Count == 0 && waveActive == false && endOfRoundModuleGiven == false)
+        {
+            if (playerLivesController.health < 10 && playerLivesController.hasLostLives == false)
+            {
+                playerLivesController.health++;
+            }
+            else
+            {
+                playerLivesController.hasLostLives = false;
+            }
+            spawnModuleOnRoundEnd();
+            endOfRoundModuleGiven = true;
+        }
+
         // Debug spawning
-        if (Input.GetKeyDown(KeyCode.A))
+        /*
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             SpawnEnemy(EnemyPrefabs[0]);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             SpawnEnemy(EnemyPrefabs[1]);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             SpawnEnemy(EnemyPrefabs[2]);
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             SpawnEnemy(EnemyPrefabs[3]);
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             SpawnEnemy(EnemyPrefabs[4]);
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             SpawnEnemy(EnemyPrefabs[5]);
+        }
+        */
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            IncWave();
+            waveCounter++;
+            roundDisplay.text = $"Round {waveCounter}\n";
         }
     }
 
@@ -106,6 +139,10 @@ public class EnemyManager : MonoBehaviour
         {
             i++;
             currentWave = waves[i];
+            if (currentWave.isRandomWave)
+            {
+                waves[i] = generateRandomWave(currentWave);
+            }
         }
     }
 
@@ -168,5 +205,64 @@ public class EnemyManager : MonoBehaviour
             SpawnEnemy(enemy);
             yield return new WaitForSeconds(timeToWait);
         }
+    }
+    private void spawnModuleOnRoundEnd()
+    {
+        int roundDiv10 = Mathf.FloorToInt(waveCounter / 10f);
+        if (waveCounter % 5 == 0 && waveCounter != 1)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
+        }
+        else if (waveCounter < 20)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> {1, 1, 2, 2, 3, 3, 4, 4, 6 });
+        }
+        else
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6 });
+        }
+    }
+
+    private Wave generateRandomWave(Wave _wave)
+    {
+        int scaleFactor = Mathf.FloorToInt(Mathf.Pow(1.0f, waveCounter / 20));
+        Debug.Log(scaleFactor);
+        int enemyTypeCount = 1 + scaleFactor;
+        int enemyCount = 0;
+        
+        for (i = 0; i < _wave.EnemiesInWave.Length; i++)
+        {
+            if (enemyTypeCount <= 0)
+                break;
+            enemyTypeCount--;
+
+            //Sets the types of enemies that will appear
+            _wave.EnemiesInWave[i] = EnemyPrefabs[Random.Range(0, 4)];
+
+            //Sets the time until the wave appears
+            if (i == 0)
+            {
+                _wave.TimeBeforeWaveStart[i] = 0;
+            }
+            else
+            {
+                _wave.TimeBeforeWaveStart[i] = (Random.Range(i, i + 7) - scaleFactor) + i;
+            }
+
+            //Sets the amount of this enemy to spawn
+            if (waveCounter <= 50)
+            {
+                _wave.NumberToSpawn[i] = (Random.Range(1, 5 + scaleFactor));
+            }
+            else
+            {
+                _wave.NumberToSpawn[i] = (Random.Range(1, 10) * (scaleFactor + 1));
+            }
+
+            //Sets the spacing between these enemies
+            _wave.TimeBetweenSpawns[i] = (Random.Range(0.25f, 5f)) / scaleFactor;
+        }
+
+        return _wave;
     }
 }

@@ -62,13 +62,13 @@ public class TurretStatContoller : MonoBehaviour
             stats[5].color = Color.white;
         }
 
-        stats[0].text = $"<sprite=0> {damage}\n";
-        stats[1].text = $"<sprite=1> {Mathf.Round(firedelay * 100f) / 100f}<size=-10>s</size>\n";
-        stats[2].text = $"<sprite=2> {pierce}\n";
-        stats[3].text = $"<sprite=3> {shotspeed}<size=-10>u/s</size>\n";
-        stats[4].text = $"<sprite=4> {Mathf.Round(range * 10f) / 10f}<size=-10>s</size>\n";
-        stats[5].text = $"<sprite=5> {bulletcount}\n";
-        stats[6].text = $"<sprite=6> {spreadangle}°\n";
+        stats[0].text = $"<sprite=0>{damage}\n";
+        stats[1].text = $"<sprite=1>{Mathf.Round(firedelay * 100f) / 100f}<size=-10>s</size>\n";
+        stats[2].text = $"<sprite=2>{pierce}\n";
+        stats[3].text = $"<sprite=3>{shotspeed}<size=-10>u/s</size>\n";
+        stats[4].text = $"<sprite=4>{Mathf.Round(range * 10f) / 10f}<size=-10>s</size>\n";
+        stats[5].text = $"<sprite=5>{bulletcount}\n";
+        stats[6].text = $"<sprite=6>{spreadangle}°\n";
 
     }
 }

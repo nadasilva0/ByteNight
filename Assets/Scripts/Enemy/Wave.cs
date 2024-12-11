@@ -15,4 +15,7 @@ public class Wave : ScriptableObject
 
     [field: SerializeField]
     public float[] TimeBetweenSpawns { get; private set; }
+
+    [field: SerializeField]
+    public bool isRandomWave { get; private set; }
 }

@@ -9,7 +9,7 @@ public class TurretInventory : MonoBehaviour
     public GameObject TurretInv;
     public AudioSource invOpenSource;
     public AudioSource invCloseSource;
-    public AudioSource invCloseSource2;
+    public AudioSource invOtherCloseSource;
 
     GameObject ScrapInv;
     ScrapHolder ScrapInvHolder;
@@ -39,24 +39,35 @@ public class TurretInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !ScrapInvMenu.menuOn)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            menuOn = !menuOn;
-            if (menuOn)
+            if (ScrapInvMenu.menuOn)
+            {
+                ScrapInvMenu.closeMenu();
+            }
+            if (!menuOn)
             {
                 invOpenSource.Play();
                 TurretInv.transform.localScale = Vector3.one;
+                menuOn = true;
             }
             else
             {
-                invCloseSource.Play();
-                StartCoroutine(changeCostume());
-                TurretInv.transform.localScale = Vector3.zero;
-                turretScript.upgradeDrillSparks.Play();
-                turretScript.upgradeSparks.Play();
-                turretScript.upgradeSpraypaint.Play();
+                closeMenu();
             }
+            Debug.Log(menuOn);
         }
+    }
+
+    public void closeMenu()
+    {
+        invCloseSource.Play();
+        invOtherCloseSource.Play();
+        StartCoroutine(changeCostume());
+        TurretInv.transform.localScale = Vector3.zero;
+        turretScript.upgradeDrillSparks.Play();
+        turretScript.upgradeSparks.Play();
+        menuOn = false;
     }
 
     public void PlaySound(AudioClip clip)
@@ -68,6 +79,5 @@ public class TurretInventory : MonoBehaviour
     {
         yield return new WaitWhile(() => invCloseSource.isPlaying);
         turretScript.changeCostume();
-        invCloseSource2.Play();
     }
 }
