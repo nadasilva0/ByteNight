@@ -225,8 +225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -13}
-  m_SizeDelta: {x: 1000, y: 700}
+  m_AnchoredPosition: {x: 2, y: 3}
+  m_SizeDelta: {x: 1000, y: 643.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351456212
 MonoBehaviour:
@@ -300,8 +300,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 258, y: 27}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 143.96, y: 1.1}
+  m_SizeDelta: {x: 224.25, y: 224.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582306220
 MonoBehaviour:
@@ -602,6 +602,7 @@ RectTransform:
   - {fileID: 1602065458}
   - {fileID: 582306219}
   - {fileID: 1008426711}
+  - {fileID: 1717693576}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -911,6 +912,81 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3080759761711932391, guid: b410a0dddd2540f408e96866537850a1, type: 3}
   m_PrefabInstance: {fileID: 1554819023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1717693575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1717693576}
+  - component: {fileID: 1717693578}
+  - component: {fileID: 1717693577}
+  m_Layer: 5
+  m_Name: SECRET SKEETS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1717693576
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717693575}
+  m_LocalRotation: {x: -0, y: -0, z: 0.80516535, w: 0.59305036}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00038146973}
+  m_LocalScale: {x: 0.7165, y: 0.7165, z: 0.6515}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1046176140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 107.252}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -132, y: -712}
+  m_SizeDelta: {x: 550, y: 800}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1717693577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717693575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d2a29f1e3eceb594f83ebdeb5d85069c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1717693578
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717693575}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1815058457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1021,8 +1097,16 @@ PrefabInstance:
       value: Dialogue Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Skeets
+      value: 
+      objectReference: {fileID: 1717693577}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: Vanessa
+      value: 
+      objectReference: {fileID: 1717693577}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: SceneName
-      value: SampleScene
+      value: Dialogue 2
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: oddColor.b
@@ -1058,31 +1142,42 @@ PrefabInstance:
       objectReference: {fileID: 1420965669}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[0]
-      value: Don't like the modules you have? Scrap 'em!
+      value: Don't like the modules you're workin' with? Scrap 'em!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[1]
-      value: The better the modules you put in, the better modules it can spit out!
+      value: Press S on that control panel to open Garg's scrap menu, and click on
+        the modules you want him to break down.
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[2]
-      value: Or it'll spit out crap. That's also a possibility. Technology's not
-        perfect, man!
+      value: The better the modules you put in, the better the module he'll spit
+        out!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[3]
-      value: Just preserve what works well for you unless you're feeling lucky, 'kay?
+      value: Or he can spit out crap. That's also a possibility. Technology's not
+        perfect, man!
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[4]
-      value: OH ALMOST FORGOT! Press SPACE to start a wave!
+      value: Just preserve whats working well unless you're feeling lucky, 'kay?
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[5]
+      value: OH YEA!! If you hit the spacebar on that control panel, it'll send in
+        the next wave of enemies.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: dialogueLines.Array.data[6]
+      value: Don't ask why it does that. I've been trying to fix that bug for months.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
+      propertyPath: dialogueLines.Array.data[7]
       value: You ready? Let's show these guys who's boss!
       objectReference: {fileID: 0}
     - target: {fileID: 8356040606849826441, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}

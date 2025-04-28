@@ -384,7 +384,7 @@ public class ModuleMaker : MonoBehaviour
         if (numberOdds == 1)
             numberOfStats = 2;
 
-        Debug.Log(numberOdds);
+        //Debug.Log(numberOdds);
         int baseNumberOfStats = numberOfStats;
         // Generates the stats
         for (int i = 0; i < numberOfStats; i++)
