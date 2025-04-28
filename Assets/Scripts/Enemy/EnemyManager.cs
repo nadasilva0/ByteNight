@@ -252,7 +252,7 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    _wave.TimeBeforeWaveStart[r] = (Random.Range(r, r + 6) / ((scaleFactor / 5) + 1) + r);
+                    _wave.TimeBeforeWaveStart[r] = (Random.Range(0, 6) / ((scaleFactor / 5) + 1) + r);
                 }
 
                 //Sets the amount of this enemy to spawn

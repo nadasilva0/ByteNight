@@ -62,11 +62,8 @@ public class TurretScript : MonoBehaviour
     public int pierce;
     public float bulletLifetime;
     // Special, module-exclusive stats (Still passed to bullet)
-    public bool isExplosive;
-    public bool isHoming;
     public float homingStrength;
-    public bool givesBurn;
-    public float burnTime;
+    public float explosionSize;
 
     // Base stats //
     private int baseDamage = 1;
