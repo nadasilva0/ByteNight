@@ -18,6 +18,7 @@ public class BulletScript : MonoBehaviour
     private int damage;
     public int pierce;
     public float lifetime;
+    public float explosionSize;
     
 
     public float baseBulletSize = 0.25f;

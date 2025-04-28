@@ -19,8 +19,9 @@ MonoBehaviour:
   - 0
   - 0
   <NumberToSpawn>k__BackingField:
-  - 2
-  - 5
+  - 4
+  - 4
   <TimeBetweenSpawns>k__BackingField:
-  - 5
+  - 2
   - 1.5
+  <isRandomWave>k__BackingField: 0
