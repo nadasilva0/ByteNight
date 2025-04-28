@@ -9,7 +9,7 @@ public class IdleTextFadeIn : MonoBehaviour
     //https://ryanjmccoach.medium.com/unity-detecting-idle-player-d0384e490f3b <---- god bless
 
     private float idleTime = 0f;
-    private float timeToIdle = 13f;
+    private float timeToIdle = 8f;
     private bool isIdle = false;
 
     public TMP_Text textDisplay;
@@ -28,6 +28,8 @@ public class IdleTextFadeIn : MonoBehaviour
             idleTime = 0f;
             if (isIdle)
             {
+         
+                isIdle = false;
                 StartCoroutine(FadeOut());
             }
         }
@@ -46,21 +48,21 @@ public class IdleTextFadeIn : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        float duration = 2f; //Fade out over 2 seconds.
-        float currentTime = 0f;
-        while (currentTime < duration)
-        {
-            float alpha = Mathf.Lerp(1f, 0f, currentTime / duration);
-            textDisplay.color = new Color(textDisplay.color.r, textDisplay.color.g, textDisplay.color.b, alpha);
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
+          float duration = 0.1f; 
+          float currentTime = 0f;
+          while (currentTime < duration)
+          {
+              currentTime += Time.deltaTime;
+              float alpha = Mathf.Lerp(1f, 0f, currentTime / duration);
+              textDisplay.color = new Color(textDisplay.color.r, textDisplay.color.g, textDisplay.color.b, alpha);
+              yield return null;
+          }
         yield break;
     }
 
     private IEnumerator FadeIn()
     {
-        float duration = 2f; //Fade out over 2 seconds.
+        float duration = 0.1f; //Fade out over 2 seconds.
         float currentTime = 0f;
         while (currentTime < duration)
         {
@@ -68,6 +70,7 @@ public class IdleTextFadeIn : MonoBehaviour
             textDisplay.color = new Color(textDisplay.color.r, textDisplay.color.g, textDisplay.color.b, alpha);
             currentTime += Time.deltaTime;
             yield return null;
+
         }
         yield break;
     }
