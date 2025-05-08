@@ -13,11 +13,11 @@ public class EnemyManager : MonoBehaviour
     public Wave[] waves;
 
     private Wave currentWave;
-    private int waveCounter = 0;
+    public int waveCounter = 0;
 
     private int i = 0;
 
-    private bool waveActive = false;
+    public bool waveActive = false;
     private bool endOfRoundModuleGiven = true;
 
     public TMP_Text roundDisplay;
@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
             IncWave();
             waveCounter++;
             roundDisplay.text = $"Round {waveCounter}\n";
-            if (waveCounter == 50)
+            if (waveCounter == 999)
             {
                 SpawnCoolBug();
             }
@@ -209,13 +209,17 @@ public class EnemyManager : MonoBehaviour
     private void spawnModuleOnRoundEnd()
     {
         int roundDiv10 = Mathf.FloorToInt(waveCounter / 10f);
-        if (waveCounter % 5 == 0 && waveCounter != 1)
+        if (waveCounter % 5 == 0 && waveCounter != 1 && waveCounter != 10)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
         }
         else if (waveCounter < 20)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> {1, 1, 2, 2, 3, 3, 4, 4, 6 });
+        }
+        else if (waveCounter == 10)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 5 });
         }
         else
         {
@@ -252,7 +256,7 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    _wave.TimeBeforeWaveStart[r] = (Random.Range(0, 6) / ((scaleFactor / 5) + 1) + r);
+                    _wave.TimeBeforeWaveStart[r] = Random.Range(0, 6);
                 }
 
                 //Sets the amount of this enemy to spawn

@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class IdleTextFadeIn : MonoBehaviour
+public class BucketTextFadeIn : MonoBehaviour
 {
-    //https://ryanjmccoach.medium.com/unity-detecting-idle-player-d0384e490f3b <---- god bless
-
-    private float idleTime = 0f;
-    private float timeToIdle = 6f;
-    private bool isIdle = false;
-
+    private bool IsFadingIn;
     public TMP_Text textDisplay;
+    public EnemyManager enemyManager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,27 +19,11 @@ public class IdleTextFadeIn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.S))
+        if (!IsFadingIn && !enemyManager.waveActive && enemyManager.waveCounter == 9)
         {
-            idleTime = 0f;
-            if (isIdle)
-            {
-         
-                isIdle = false;
-                StartCoroutine(FadeOut());
-            }
+            IsFadingIn = true;
+            StartCoroutine(FadeIn());
         }
-        else
-        {
-            idleTime += Time.deltaTime;
-
-            if (idleTime >= timeToIdle && !isIdle)
-            {
-                isIdle = true;
-                StartCoroutine(FadeIn());
-            }
-        }
-        Debug.Log(idleTime);
     }
 
     private IEnumerator FadeOut()

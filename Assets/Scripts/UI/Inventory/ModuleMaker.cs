@@ -16,6 +16,7 @@ public class ModuleMaker : MonoBehaviour
         //Creates 2 stat modules to start
         CreatePositiveStatModule(1, new List<int> {1, 2, 3});
         CreatePositiveStatModule(1, new List<int> { 1, 2, 3});
+        CreatePositiveStatModule(1, new List<int> { 1, 2, 3 });
     }
 
     public Module setupStats(Module newModule, int quality, int isDebuff, List<int> allowedStats)
