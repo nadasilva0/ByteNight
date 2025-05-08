@@ -11,6 +11,9 @@ public class IdleTextFadeIn : MonoBehaviour
     private float idleTime = 0f;
     private float timeToIdle = 6f;
     private bool isIdle = false;
+    public EnemyManager enemyManager;
+    public TurretInventory turretInventory;
+    public ScrapInventory ScrapInvMenu;
 
     public TMP_Text textDisplay;
 
@@ -23,7 +26,7 @@ public class IdleTextFadeIn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.S))
+        if (turretInventory.menuOn || ScrapInvMenu.menuOn || enemyManager.numEnemiesLeft != 0)
         {
             idleTime = 0f;
             if (isIdle)

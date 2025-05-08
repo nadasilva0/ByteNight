@@ -948,6 +948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133a57a5e2953fa4aabc250c45c2444f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 474005787}
+  turretInventory: {fileID: 1564870850}
+  ScrapInvMenu: {fileID: 498988611}
   textDisplay: {fileID: 213924961}
 --- !u!1 &233896190
 GameObject:
@@ -2151,15 +2154,15 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
-  - {fileID: 11400000, guid: 66b0fc6bf4cd1564ab40871bc1e79dea, type: 2}
-  - {fileID: 11400000, guid: 695429c13566ce24d954026cc159f8e9, type: 2}
-  - {fileID: 11400000, guid: 6a7e0350940eda44fa666f6637eb4838, type: 2}
-  - {fileID: 11400000, guid: 24031efbce827794eb96690d7ca3de15, type: 2}
-  - {fileID: 11400000, guid: bd2674d8389d0f14682bf1bc4b9d7383, type: 2}
-  - {fileID: 11400000, guid: 115da6e565cb9ec49ab7a8767de525f2, type: 2}
-  - {fileID: 11400000, guid: 996fa270589a47c41a531a64955795ac, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
   - {fileID: 11400000, guid: 5ebc7f7e0f483f5418ec964d40b35a0b, type: 2}
-  - {fileID: 11400000, guid: 3c0ff9e7184731b4b815e44f761e7f5b, type: 2}
+  - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
   - {fileID: 11400000, guid: 3c9e9f32461c05345aca3c58e7b9075f, type: 2}
   - {fileID: 11400000, guid: 208f2af02bcaa1f4f80bffaeb30f7e25, type: 2}
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
@@ -2252,6 +2255,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65923eee7690860409f3c3ca81ee3058, type: 2}
   waveCounter: 0
   waveActive: 0
+  endOfRoundModuleGiven: 1
+  numEnemiesLeft: 0
   roundDisplay: {fileID: 895494874}
   EnemyPrefabs:
   - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
@@ -2264,6 +2269,7 @@ MonoBehaviour:
   monsterDeath: {fileID: 474005788}
   damageSound: {fileID: 474005790}
   immuneSound: {fileID: 474005789}
+  IsWaveActiveBandaidFix: 0
   playerLivesController: {fileID: 451486832}
   enemiesList: []
 --- !u!82 &474005788
@@ -4475,6 +4481,7 @@ GameObject:
   - component: {fileID: 860508947}
   - component: {fileID: 860508949}
   - component: {fileID: 860508948}
+  - component: {fileID: 860508950}
   m_Layer: 2
   m_Name: DescTextBoxBucket
   m_TagString: Untagged
@@ -4541,6 +4548,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860508946}
   m_CullTransparentMesh: 1
+--- !u!114 &860508950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860508946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cad227c905edb4d97ab0440a43b055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyManager: {fileID: 474005787}
 --- !u!1 &882370457
 GameObject:
   m_ObjectHideFlags: 0
@@ -9015,7 +9035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1860523744
 RectTransform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,9 @@ public class EnemyManager : MonoBehaviour
     private int i = 0;
 
     public bool waveActive = false;
-    private bool endOfRoundModuleGiven = true;
+    public bool endOfRoundModuleGiven = true;
+
+    public int numEnemiesLeft;
 
     public TMP_Text roundDisplay;
 
@@ -28,6 +30,8 @@ public class EnemyManager : MonoBehaviour
     public AudioSource monsterDeath;
     public AudioSource damageSound;
     public AudioSource immuneSound;
+
+    public bool IsWaveActiveBandaidFix = false;
 
     public PlayerLivesController playerLivesController;
 
@@ -46,6 +50,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        IsWaveActiveBandaidFix = false;
         coolFuckingText = GameObject.Find("extremely fucking cool bug text");
         inventoryScript = FindObjectOfType<ModuleMaker>();
         playerLivesController = FindObjectOfType<PlayerLivesController>();
@@ -56,7 +61,8 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        numEnemiesLeft = enemiesList.Count;
+        //Debug.Log(waveCounter);
         if (Input.GetKeyDown(KeyCode.Space) && waveActive == false && enemiesList.Count == 0)
         {
             endOfRoundModuleGiven = false;
@@ -113,13 +119,13 @@ public class EnemyManager : MonoBehaviour
         {
             SpawnEnemy(EnemyPrefabs[5]);
         }
-        */
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
             IncWave();
             waveCounter++;
             roundDisplay.text = $"Round {waveCounter}\n";
         }
+        */
     }
 
     IEnumerator SpawnWave()
@@ -209,7 +215,7 @@ public class EnemyManager : MonoBehaviour
     private void spawnModuleOnRoundEnd()
     {
         int roundDiv10 = Mathf.FloorToInt(waveCounter / 10f);
-        if (waveCounter % 5 == 0 && waveCounter != 1 && waveCounter != 10)
+        if (waveCounter % 5 == 0 && waveCounter > 20)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
         }
@@ -217,9 +223,17 @@ public class EnemyManager : MonoBehaviour
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> {1, 1, 2, 2, 3, 3, 4, 4, 6 });
         }
-        else if (waveCounter == 10)
+        else if (waveCounter == 4)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 5 });
+        }
+        else if (waveCounter == 9)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0 });
+        }
+        else if (waveCounter == 14)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 7 });
         }
         else
         {
