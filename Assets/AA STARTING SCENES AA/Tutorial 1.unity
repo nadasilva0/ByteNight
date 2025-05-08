@@ -1339,7 +1339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: whosTalkin.Array.data[0]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: whosTalkin.Array.data[1]
@@ -1359,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: whosTalkin.Array.data[5]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6499755215990279366, guid: 67e26e515d4659f4d9286ff843281d9b, type: 3}
       propertyPath: dialogueLines.Array.data[0]
