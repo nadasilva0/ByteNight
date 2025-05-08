@@ -14,6 +14,6 @@ public class CreditsMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0f, 0.002f);
+        transform.position += new Vector3(0f, 0.75f) * Time.deltaTime;
     }
 }
