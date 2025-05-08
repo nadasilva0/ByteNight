@@ -2250,6 +2250,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: 65923eee7690860409f3c3ca81ee3058, type: 2}
+  waveCounter: 0
+  waveActive: 0
   roundDisplay: {fileID: 895494874}
   EnemyPrefabs:
   - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
@@ -4474,7 +4476,7 @@ GameObject:
   - component: {fileID: 860508949}
   - component: {fileID: 860508948}
   m_Layer: 2
-  m_Name: DescTextBoxDmg
+  m_Name: DescTextBoxBucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1054,13 +1054,13 @@ MonoBehaviour:
     Lead Composer:
     Donovan Lindsay
 
-    
+
 
 
     External Assets Credits:
 
-    Main Menu Music:
-    Darkest Child - Kevin MacLeod
+    Main Menu Music: Darkest
+    Child - Kevin MacLeod
 
     Sebastian Lague''s Path Creator Unity Asset
 
@@ -1078,13 +1078,13 @@ MonoBehaviour:
     Sound Effect Library:
     Pixabay, FreeSound
 
-    
+
 
 
     SPECIAL THANKS
 
-    All of GDD 210 Section 1,
-    for playtesting our game
+    All of GDD 210 Section 1, for
+    playtesting our game
 
 
     Reed Cahill, for naming Gargleblaster
@@ -1097,7 +1097,7 @@ MonoBehaviour:
     Divine Intervention,
     for suddenly giving all of us the motivation to lock tf in on the last week
 
-    
+
 
     And
     thank YOU, Professor Blake, for making this all possible!
@@ -1286,8 +1286,8 @@ RectTransform:
   m_Children:
   - {fileID: 1702951065}
   - {fileID: 505083597}
-  - {fileID: 485712475}
   - {fileID: 59839996}
+  - {fileID: 485712475}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
