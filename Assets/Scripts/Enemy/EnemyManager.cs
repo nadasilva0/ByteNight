@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     public Wave[] waves;
 
     private Wave currentWave;
-    public int waveCounter = 0;
+    public int waveCounter;
 
     private int i = 0;
 
@@ -91,6 +91,11 @@ public class EnemyManager : MonoBehaviour
             }
             spawnModuleOnRoundEnd();
             endOfRoundModuleGiven = true;
+
+            if (waveCounter == 20)
+            {
+                GameObject.FindObjectOfType<SimpleSceneTransition>().ChangeScene("Ending Scene");
+            }
         }
 
         // Debug spawning
@@ -219,10 +224,6 @@ public class EnemyManager : MonoBehaviour
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
         }
-        else if (waveCounter < 20)
-        {
-            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> {1, 1, 2, 2, 3, 3, 4, 4, 6 });
-        }
         else if (waveCounter == 4)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 5 });
@@ -234,6 +235,10 @@ public class EnemyManager : MonoBehaviour
         else if (waveCounter == 14)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 7 });
+        }
+        else if (waveCounter < 12)
+        {
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 6 });
         }
         else
         {
@@ -270,7 +275,7 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    _wave.TimeBeforeWaveStart[r] = Random.Range(0, 6);
+                    _wave.TimeBeforeWaveStart[r] = Random.Range(0, 4);
                 }
 
                 //Sets the amount of this enemy to spawn
@@ -284,7 +289,7 @@ public class EnemyManager : MonoBehaviour
                 }
 
                 //Sets the spacing between these enemies
-                _wave.TimeBetweenSpawns[r] = (Random.Range(1f, 6f)) / ((scaleFactor / 4) + 1);
+                _wave.TimeBetweenSpawns[r] = (Random.Range(1f, 4f));
             }
         }
         return _wave;
