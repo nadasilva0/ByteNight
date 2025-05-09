@@ -20,7 +20,7 @@ public class BucketTextFadeIn : MonoBehaviour
     {
         if ((!enemyManager.waveActive && enemyManager.numEnemiesLeft == 0) && enemyManager.waveCounter == 9)
         {
-            this.transform.localScale = new Vector3(9.02139f, 2.62378f, 3.08434f);
+            this.transform.localScale = new Vector3(3.758582f, 1.093145f, 1.285028f);
         }
         else
         {

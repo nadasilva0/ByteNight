@@ -219,6 +219,7 @@ public class EnemyManager : MonoBehaviour
     }
     private void spawnModuleOnRoundEnd()
     {
+        Debug.Log("Module spawning");
         int roundDiv10 = Mathf.FloorToInt(waveCounter / 10f);
         /*
         if (waveCounter % 5 == 0 && waveCounter > 20)
@@ -226,26 +227,27 @@ public class EnemyManager : MonoBehaviour
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
         }
         */
-        if (waveCounter == 4)
+        if (waveCounter == 9)
         {
-            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 5 });
-        }
-        else if (waveCounter == 9)
-        {
-            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0 });
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 0, 0, 0 });
+            Debug.Log("Fixed DMG");
         }
         else if (waveCounter == 14)
         {
-            inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 7 });
+            inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 7, 7, 7 });
+            Debug.Log("Fixed Homing");
         }
-        else if (waveCounter < 12)
+        else
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 6 });
+            Debug.Log("Regular Module");
         }
+        /*
         else
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10, roundDiv10 + 2), new List<int> { 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6 });
         }
+        */
     }
 
     private Wave generateRandomWave(Wave _wave)

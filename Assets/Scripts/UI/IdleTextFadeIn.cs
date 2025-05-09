@@ -46,7 +46,7 @@ public class IdleTextFadeIn : MonoBehaviour
                 StartCoroutine(FadeIn());
             }
         }
-        Debug.Log(idleTime);
+        //Debug.Log(idleTime);
     }
 
     private IEnumerator FadeOut()
