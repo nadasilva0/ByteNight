@@ -220,11 +220,13 @@ public class EnemyManager : MonoBehaviour
     private void spawnModuleOnRoundEnd()
     {
         int roundDiv10 = Mathf.FloorToInt(waveCounter / 10f);
+        /*
         if (waveCounter % 5 == 0 && waveCounter > 20)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 0, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 5, 7});
         }
-        else if (waveCounter == 4)
+        */
+        if (waveCounter == 4)
         {
             inventoryScript.CreateStatModule(Random.Range(roundDiv10 + 1, roundDiv10 + 3), new List<int> { 5 });
         }
@@ -281,15 +283,15 @@ public class EnemyManager : MonoBehaviour
                 //Sets the amount of this enemy to spawn
                 if (waveCounter <= 50)
                 {
-                    _wave.NumberToSpawn[r] = (Random.Range(1, 3 + (scaleFactor / 3)));
+                    _wave.NumberToSpawn[r] = (Random.Range(3, 15 + (scaleFactor / 3)));
                 }
                 else
                 {
-                    _wave.NumberToSpawn[r] = (Random.Range(1, 10) * ((scaleFactor + 1) / 4));
+                    _wave.NumberToSpawn[r] = (Random.Range(20, 50) * ((scaleFactor + 1) / 4));
                 }
 
                 //Sets the spacing between these enemies
-                _wave.TimeBetweenSpawns[r] = (Random.Range(1f, 4f));
+                _wave.TimeBetweenSpawns[r] = (Random.Range(0.5f, 3f));
             }
         }
         return _wave;

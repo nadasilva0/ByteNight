@@ -13,7 +13,7 @@ public class SimpleDialogue : MonoBehaviour
     public string SceneName;
 
     
-    private Color SkeetsColor = new Color(0.4f, 0.8f, 0.4f);
+    private Color SkeetsColor = new Color(0.1f, 0.6f, 0.1f);
     private Color VanessaColor = new Color(0.6f, 0.4f, 0.8f);
 
     public Image Skeets;
