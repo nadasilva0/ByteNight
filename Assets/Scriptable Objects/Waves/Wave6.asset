@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Wave6
   m_EditorClassIdentifier: 
   <EnemiesInWave>k__BackingField:
+  - {fileID: 5688213551541255089, guid: 81d7ded4c69b8bf49a829dd8e815593c, type: 3}
   - {fileID: 5688213551541255089, guid: 59c82e004b4110b44a3a3139e74c7671, type: 3}
-  - {fileID: 5688213551541255089, guid: 2c3f99d89588adc46a5e6d8a8c91fa06, type: 3}
   <TimeBeforeWaveStart>k__BackingField:
-  - 0
+  - 1
   - 0
   <NumberToSpawn>k__BackingField:
-  - 4
-  - 4
-  <TimeBetweenSpawns>k__BackingField:
+  - 5
   - 2
-  - 1.5
+  <TimeBetweenSpawns>k__BackingField:
+  - 1
+  - 2
   <isRandomWave>k__BackingField: 0

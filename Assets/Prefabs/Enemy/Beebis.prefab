@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8089362276093884667}
-  - component: {fileID: 4506829600283412944}
+  - component: {fileID: 973567554128499260}
   - component: {fileID: 800409258084446995}
   - component: {fileID: 6566269111561981888}
-  - component: {fileID: 303165737350178965}
-  - component: {fileID: 1146921265633705381}
+  - component: {fileID: 1641655736164077147}
+  - component: {fileID: 192834871833089006}
   m_Layer: 7
-  m_Name: FastEnemy
+  m_Name: Beebis
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,13 +30,13 @@ Transform:
   m_GameObject: {fileID: 5688213551541255089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.507, y: -0.709, z: 0}
-  m_LocalScale: {x: 0.45199168, y: 0.45199168, z: 0.45199168}
+  m_LocalPosition: {x: 3.648, y: -0.416, z: 0}
+  m_LocalScale: {x: 0.33451715, y: 0.33451715, z: 0.33451715}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4506829600283412944
+--- !u!212 &973567554128499260
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cdadc6238b4b50a49bace60491c7f7d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e694e80c9e1deff448eaa05856346176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e124e390149b41b75d7d1a9afb4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6.5
+  speed: 3
   distanceTraveled: 0
 --- !u!114 &6566269111561981888
 MonoBehaviour:
@@ -114,16 +114,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5608f17f1b04b4d882dc18e54c4f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashEffect: {fileID: 1146921265633705381}
-  maxHealth: 3
+  flashEffect: {fileID: 192834871833089006}
+  maxHealth: 2
   health: 0
   damageResist: 0
   pierceResist: 0
   isBurning: 0
   weaknessAmount: 0
   metalSparks: {fileID: 0}
---- !u!58 &303165737350178965
-CircleCollider2D:
+--- !u!70 &1641655736164077147
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -154,10 +154,10 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06176966, y: 0.46258804}
-  serializedVersion: 2
-  m_Radius: 0.8373168
---- !u!114 &1146921265633705381
+  m_Offset: {x: 0.19069515, y: -0.17225821}
+  m_Size: {x: 2.0420856, y: 2.8725405}
+  m_Direction: 0
+--- !u!114 &192834871833089006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

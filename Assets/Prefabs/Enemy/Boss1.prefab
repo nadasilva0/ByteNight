@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 5688213551541255089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.512, y: -0.251, z: 0}
-  m_LocalScale: {x: 0.38482, y: 0.38482, z: 0.38482}
+  m_LocalPosition: {x: 3.512, y: -0.058, z: 0}
+  m_LocalScale: {x: 0.5684946, y: 0.5684946, z: 0.5684946}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4665987720815216983}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8e124e390149b41b75d7d1a9afb4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.1
+  speed: 1
   distanceTraveled: 0
 --- !u!114 &6566269111561981888
 MonoBehaviour:
@@ -116,10 +116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashEffect: {fileID: 9129395203002666500}
-  maxHealth: 150
-  health: 150
+  maxHealth: 65
+  health: 0
   damageResist: 2
-  pierceResist: 2
+  pierceResist: 0
   isBurning: 0
   weaknessAmount: 0
   metalSparks: {fileID: 485232335827765159}

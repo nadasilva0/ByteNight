@@ -66,12 +66,16 @@ public class ModuleCard : MonoBehaviour, IPointerClickHandler
         // Change background depending on module quality/specialness
         if (module.homingStrength > 0)
         {
-            moduleBg = 2;
+            moduleBg = 4;
             modIcon = 1;
         }
-        else if (module.quality > 2)
+        else if (module.quality <= 4)
         {
-            moduleBg = 1;
+            moduleBg = module.quality;
+            Debug.Log(module.quality);
+        } else
+        {
+            moduleBg = 3;
         }
         imageComponent.sprite = moduleBackground[moduleBg];
         modIconSprite.sprite = moduleIcon[modIcon];

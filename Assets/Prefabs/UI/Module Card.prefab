@@ -262,8 +262,10 @@ MonoBehaviour:
     burnTime: 0
   inScrapMenu: 0
   moduleBackground:
+  - {fileID: 21300000, guid: 25d8036d12176d14f8cc8d99b8a9aaf1, type: 3}
   - {fileID: 21300000, guid: 556c7c8aca82bb74ba0a3869d3bb28de, type: 3}
   - {fileID: 21300000, guid: 1f3921504bfe0d442a43c56692526a58, type: 3}
+  - {fileID: 21300000, guid: b1ee9fff5702b0241b52f4a7aae2c97e, type: 3}
   - {fileID: 21300000, guid: cdb24c81e2456b548b079bd58ac7f631, type: 3}
   moduleIcon:
   - {fileID: 21300000, guid: f17865cbdf359bc4a89e929a9253da77, type: 3}

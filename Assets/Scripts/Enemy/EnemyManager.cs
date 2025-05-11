@@ -99,7 +99,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         // Debug spawning
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SpawnEnemy(EnemyPrefabs[0]);
@@ -130,7 +130,7 @@ public class EnemyManager : MonoBehaviour
             waveCounter++;
             roundDisplay.text = $"Round {waveCounter}\n";
         }
-        */
+        
     }
 
     IEnumerator SpawnWave()
@@ -285,7 +285,7 @@ public class EnemyManager : MonoBehaviour
                 //Sets the amount of this enemy to spawn
                 if (waveCounter <= 50)
                 {
-                    _wave.NumberToSpawn[r] = (Random.Range(3, 15 + (scaleFactor / 3)));
+                    _wave.NumberToSpawn[r] = (Random.Range(3, 9)) + (waveCounter - 12);
                 }
                 else
                 {
@@ -293,7 +293,7 @@ public class EnemyManager : MonoBehaviour
                 }
 
                 //Sets the spacing between these enemies
-                _wave.TimeBetweenSpawns[r] = (Random.Range(0.5f, 3f));
+                _wave.TimeBetweenSpawns[r] = (Random.Range(0.1f, 1f));
             }
         }
         return _wave;

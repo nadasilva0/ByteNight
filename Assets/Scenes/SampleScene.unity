@@ -2199,16 +2199,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: bb7a1cb874eddd84c8e4182c9640eefd, type: 2}
   - {fileID: 11400000, guid: 66b0fc6bf4cd1564ab40871bc1e79dea, type: 2}
-  - {fileID: 11400000, guid: 6a7e0350940eda44fa666f6637eb4838, type: 2}
   - {fileID: 11400000, guid: 695429c13566ce24d954026cc159f8e9, type: 2}
+  - {fileID: 11400000, guid: 6a7e0350940eda44fa666f6637eb4838, type: 2}
   - {fileID: 11400000, guid: 24031efbce827794eb96690d7ca3de15, type: 2}
   - {fileID: 11400000, guid: bd2674d8389d0f14682bf1bc4b9d7383, type: 2}
   - {fileID: 11400000, guid: 115da6e565cb9ec49ab7a8767de525f2, type: 2}
-  - {fileID: 11400000, guid: 996fa270589a47c41a531a64955795ac, type: 2}
+  - {fileID: 11400000, guid: 75c315aba0662014a9cf42535baf0221, type: 2}
   - {fileID: 11400000, guid: 5ebc7f7e0f483f5418ec964d40b35a0b, type: 2}
   - {fileID: 11400000, guid: 3c0ff9e7184731b4b815e44f761e7f5b, type: 2}
-  - {fileID: 11400000, guid: 3c9e9f32461c05345aca3c58e7b9075f, type: 2}
   - {fileID: 11400000, guid: 208f2af02bcaa1f4f80bffaeb30f7e25, type: 2}
+  - {fileID: 11400000, guid: 3c9e9f32461c05345aca3c58e7b9075f, type: 2}
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
   - {fileID: 11400000, guid: 30b344044d31b5f42934602217c92864, type: 2}
@@ -3958,15 +3958,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 304da65ad8e269d4f862d6c84443e400, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8197,15 +8197,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2dda86922cff4954f824d9f5428073e7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8268,7 +8268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1694739076
 Transform:
   m_ObjectHideFlags: 0

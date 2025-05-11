@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashEffect: {fileID: -6565205997530594874}
-  maxHealth: 8
+  maxHealth: 10
   health: 0
   damageResist: 0
   pierceResist: 0

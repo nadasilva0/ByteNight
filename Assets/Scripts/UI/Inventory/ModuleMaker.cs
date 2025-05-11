@@ -14,9 +14,9 @@ public class ModuleMaker : MonoBehaviour
     private void Start()
     {
         //Creates 2 stat modules to start
-        CreatePositiveStatModule(1, new List<int> {1, 2, 3});
-        CreatePositiveStatModule(1, new List<int> { 1, 2, 3});
-        CreatePositiveStatModule(1, new List<int> { 1, 2, 3 });
+        CreatePositiveStatModule(0, new List<int> {1, 2, 3});
+        CreatePositiveStatModule(0, new List<int> { 1, 2, 3});
+        CreatePositiveStatModule(0, new List<int> { 1, 2, 3 });
     }
 
     public Module setupStats(Module newModule, int quality, int isDebuff, List<int> allowedStats)
@@ -426,8 +426,7 @@ public class ModuleMaker : MonoBehaviour
         }
 
         // Sets display
-        if (positiveOdds == 1)
-            newModule.quality += 1;
+        
         newCard.setStatDisplay(newModule);
     }
 
